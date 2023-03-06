@@ -34,14 +34,8 @@ Route::post('/user-login', [LoginController::class, 'LOGIN'])->name('LOGIN');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'role:admin']], function() {
     
-    
-    
 
-
-   
     Route::resource('users', UserController::class);
-    
-
-
+ 
     Route::get('/user-account-status/{id}', [UserController::class, 'user_account_status_toggle'])->name('user-account-status-toggle');
 });
