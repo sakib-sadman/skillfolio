@@ -34,8 +34,16 @@ Route::post('/user-login', [LoginController::class, 'LOGIN'])->name('LOGIN');
 
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'role:admin']], function() {
     
+    
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'profile_edit'])->name('profile_edit');
+    Route::post('/profile/update', [ProfileController::class, 'profile_update'])->name('profile_update');
 
+
+   
     Route::resource('users', UserController::class);
- 
+    
+
+
     Route::get('/user-account-status/{id}', [UserController::class, 'user_account_status_toggle'])->name('user-account-status-toggle');
 });
