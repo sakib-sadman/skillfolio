@@ -53,7 +53,7 @@
                 <div class="card">
                     <div class="card-body ">
 
-                        <h4 class="mb-2 text-center">Welcome to Admin Panel!</h4>
+                        <h4 class="mb-2 text-center">Welcome to {{ config('app.name') }}!</h4>
                         <p class="mb-4 text-center">Please sign-in to your account</p>
 
                         <form id="formAuthentication" class="mb-3" action="{{ route('LOGIN') }}" method="POST">

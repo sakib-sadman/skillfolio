@@ -29,7 +29,16 @@ class LoginController extends Controller
 
             if(Auth::user()->hasRole('admin')){
                 return redirect()->route('admin_dashboard');
-            }else{
+            }
+            else if(Auth::user()->hasRole('student')){
+
+                return redirect()->route('student_dashboard');
+            }
+            else if(Auth::user()->hasRole('faculty')){
+
+                return redirect()->route('faculty_dashboard');
+            }
+            else{
                 Auth::logout();
                 return back()->with('error', "These credentials doesn't match with our records");
             }

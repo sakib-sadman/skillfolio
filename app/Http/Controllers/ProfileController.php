@@ -42,7 +42,6 @@ class ProfileController extends Controller
             
         if(isset($request->password)){
             $user->password =  Hash::make($request->password);
-            $user->pass =  $request->password;
             
         }
         $user->save();

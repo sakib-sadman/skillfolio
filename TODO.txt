@@ -1,0 +1,13 @@
+Login
+Registration
+Search
+Posting job
+Faculty member profile
+Student profile
+Search filtering 
+Recommending students for a job
+Course verification by faculty members
+Admin profile
+Admins can enable/disable a profile of a student during profile creation
+Cv creator 
+CV skill verification by email
