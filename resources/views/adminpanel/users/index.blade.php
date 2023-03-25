@@ -38,8 +38,8 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Role</th>
-                        <th>Status</th>
                         <th>Date</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
