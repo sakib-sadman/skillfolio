@@ -37,6 +37,7 @@ Route::post('/user-login', [LoginController::class, 'LOGIN'])->name('LOGIN');
 
 
 
+
 #~~~~~~~~~~~~ all admin panel routes ~~~~~~~~~~~~~~
 
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'role:admin']], function() {

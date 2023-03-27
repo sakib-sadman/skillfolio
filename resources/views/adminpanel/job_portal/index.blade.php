@@ -28,52 +28,6 @@
         </div>
     </div>
     <!-- Basic Bootstrap Table -->
-    <div class="row">
-        <div class="col-md-12 mb-3">
-            <div class="d-flex justify-content-between align-items-center">
-                <h4 class="card-title"></h4>
-                <div class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="job-search">
-                </div>
-            </div>
-        </div>
-        @if ($job_portals->isNotEmpty())
-    
-            @foreach ($job_portals as $key => $data)
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $data->job_title ?? '' }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $data->company_name ?? '' }}</h6>
-                        <p class="card-text">{{ $data->job_description ?? '' }}</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Deadline: {{ date('d M, Y', strtotime($data->created_at))  ?? '' }}</li>
-                        <li class="list-group-item">Salary: {{ $data->job_salary ?? '' }}</li>
-                        <li class="list-group-item">Post Date: {{ date('d M, Y', strtotime($data->created_at))  }}</li>
-                        <li class="list-group-item">Status: 
-                            <a href="{{ route('job-portal-switch', $data->id) }}" onclick="return window.confirm('Confirm to make Job {{ $data->status == 1 ? 'Deactive' : 'Active' }}!')">
-                                <span class="badge bg-label-{{ $data->status == 1 ? 'primary' : 'danger' }} me-1">{{ $data->status == 1 ? 'Active' : 'Deactive' }}</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="{{ route('job-portal.edit', $data->id) }}" class="card-link"><i class="fa fa-pencil"></i> Edit</a>  
-                        <a href="#" onclick="if(!confirm('Are you sure you want to delete this Job News?')){event.preventDefault();}else{document.getElementById('delete-form-{{ $key }}').submit();}"
-                            class="card-link text-danger"><i class="fa fa-trash"></i> Delete
-                        </a>                      
-                    </div>
-                    <form id="delete-form-{{ $key }}" action="{{route('job-portal.destroy', $data->id)}}" method="POST" style="display: none;">
-                        @csrf
-                        @method('DELETE')
-                    </form>
-                </div>
-            </div>
-            @endforeach
-    
-        @endif
-    
-    </div>
 
     <!--/ Basic Bootstrap Table -->
 
@@ -96,22 +50,4 @@
     });
 </script>
 
-<script>
-  $(document).ready(function() {
-        $('#job-search').on('keyup', function () {
-            var value = $(this).val().toLowerCase();
-            if (value.length == 0) {
-                $('.card').fadeIn();
-            } else {
-                $('.card').each(function () {
-                    if ($(this).text().toLowerCase().indexOf(value) > -1) {
-                        $(this).fadeIn();
-                    } else {
-                        $(this).fadeOut();
-                    }
-                });
-            }
-        });
-    });
-</script>
 @endsection
