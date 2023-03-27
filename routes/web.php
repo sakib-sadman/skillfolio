@@ -34,7 +34,7 @@ Route::get('/home', function () {
 });
 
 Route::post('/user-login', [LoginController::class, 'LOGIN'])->name('LOGIN');
-Route::get('/user-registration', [LoginController::class, 'registration'])->name('registration');
+
 
 
 

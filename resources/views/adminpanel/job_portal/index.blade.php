@@ -28,72 +28,7 @@
         </div>
     </div>
     <!-- Basic Bootstrap Table -->
-    <div class="card">
 
-        <div class="table-responsive text-nowrap p-4">
-            <table class="table" id="DataTable">
-                <thead>
-                    <tr>
-                        <th>SL</th>
-                        <th>Title</th>
-                        <th>Company</th>
-                        <th>Apply Deadline</th>
-                        <th>Salary</th>
-                        <th>Post Date</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                    @if ($job_portals->isNotEmpty())
-
-                    @foreach ($job_portals as $key=> $data)
-                    <tr>
-                        <td>{{ $key+1 }}</td>
-                        <td>{{ $data->job_title ?? '' }}</td>
-                        <td>{{ $data->company_name ?? '' }}</td>
-                        <td>{{ date('d M, Y', strtotime( $data->job_deadline))  ?? '' }}</td>
-                        <td>{{ $data->job_salary ?? '' }}</td>
-                        <td>{{ date('h:ia', strtotime($data->created_at))  }} <br>
-                            {{ date('d M, Y', strtotime($data->created_at))  }}
-                        </td>
-                        <td> 
-                            @if ($data->status == 1)
-                                <a href="{{route('job-portal-switch', $data->id)}}">
-                                    <span class="badge bg-label-primary me-1">Active</span>
-                                </a>
-                            @elseif($data->status == 0)
-                                <a href="{{route('job-portal-switch', $data->id)}}">
-                                    <span class="badge bg-label-danger me-1">Deactive</span>
-                                </a>
-                            @endif
-                            
-                            
-                        </td>
-                        <td>
-                            
-                            <a href="{{ route('job-portal.edit', $data->id) }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></a>  
-                            <a href="#" onclick="if(!confirm('Are you sure you want to delete this Job News?')){event.preventDefault();}else{document.getElementById('delete-form-{{ $key }}').submit();}"
-                                    class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
-                            </a>
-                                
-                            <form id="delete-form-{{ $key }}" action="{{route('job-portal.destroy', $data->id)}}" method="POST" style="display: none;">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-
-                           
-
-                        </td>
-                    </tr>
-                    @endforeach
-
-                    @endif
-
-                </tbody>
-            </table>
-        </div>
-    </div>
     <!--/ Basic Bootstrap Table -->
 
 
@@ -114,4 +49,5 @@
         $('#DataTable').DataTable();
     });
 </script>
+
 @endsection
