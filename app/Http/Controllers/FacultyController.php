@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\User;
+use App\Models\StudentSkills;
+use App\Models\Image;
+use App\Models\JobRecommendation;
 use Illuminate\Support\Facades\Hash;
 class FacultyController extends Controller
-{
 
     function recommendation_faculty_revoke_decision($id)
     {
@@ -54,6 +57,48 @@ class FacultyController extends Controller
         return view('facultypanel.job_recommendation.index', compact('pending_job_recommendations','accpetedDeclined_job_recommendations' ));
     }
 
+    function student_skills_decline($id)
+    {
+        $student_skill = StudentSkills::find($id);
+        $student_skill->status = -1;
+        $student_skill->save();
+        return back()->with('success', 'Student Skill has been declined!');
+    }
+    function student_skills_approve($id)
+    {
+        $student_skill = StudentSkills::find($id);
+        $student_skill->status = 1;
+        $student_skill->save();
+        return back()->with('success', 'Student Skill has been approved!');
+    }
+    function student_skills_delete($id){
+        $student_skill = StudentSkills::find($id);
+        $student_skill->delete();
+        return back()->with('success', 'Student Skill has been deleted!');
+    }
+    function student_skills_show($id)
+    {
+        $student_skill = StudentSkills::find($id);
+        $faculties = User::role('faculty')->get();
+        $student = User::find($student_skill->user_id);
+
+        return view('facultypanel.student_skills.show', [
+            'student_skill' => $student_skill,
+            'faculties' => $faculties,
+            'student' => $student,
+        ]);
+    }
+    function student_skills_list()
+    {
+        // return
+        $skills_pending = StudentSkills::where('faculty_id', Auth::user()->id)->where('status', 0)->get();
+        $skills_approved_or_declined = StudentSkills::where('faculty_id', Auth::user()->id)->where('status','!=' , 0)->get();
+
+        return view('facultypanel.student_skills.index', [
+            'skills_pending' => $skills_pending,
+            'skills_approved_or_declined' => $skills_approved_or_declined,
+        ]);
+    }
 
     function dashboard()
     {
