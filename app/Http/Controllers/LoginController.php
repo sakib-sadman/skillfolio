@@ -7,9 +7,37 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-
+use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
+
+    function account_create(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password =  Hash::make($request->password);
+        $user->status =  0;
+        $user->address =  $request->address ?? null;
+        $user->phone =  $request->phone ?? null;
+        $user->gender =  $request->gender ?? null;
+        $user->save();
+     
+        $user->assignRole('student');
+
+        return back()->with('success', 'User created successfully.');
+    }
+    function registration()
+    {
+        return view('auth.register');
+      
+    }
+
     function LOGIN(Request $req)
     {
 

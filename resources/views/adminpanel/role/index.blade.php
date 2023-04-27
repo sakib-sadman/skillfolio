@@ -44,7 +44,7 @@
                                             <td><strong>{{ $data->name }}</strong></td>                                        
                                             <td>
                                                 <a onclick="editRoleContent({{ $data->id }}, 'RoleTable', 'RoleEditForm')" class="btn btn-sm btn-warning"><i class="fa fa-pencil" style="color: white;"></i></a>
-                                                <a href="{{ route('role_delete', $data->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
+                                                {{--  <a href="{{ route('role_delete', $data->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></ a>  --}}
                                             </td>
                                         </tr>
                                 @endforeach
