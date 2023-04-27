@@ -107,6 +107,11 @@ Route::group(['prefix' => 'faculty','middleware' => ['auth', 'role:faculty']], f
     Route::get('/student-job-recommendation/{id}/approve', [FacultyController::class, 'recommendation_faculty_approve'])->name('recommendation_faculty_approve');
     Route::get('/student-job-recommendation/{id}/revoke', [FacultyController::class, 'recommendation_faculty_revoke_decision'])->name('recommendation_faculty_revoke_decision');
 
+    Route::get('/student-job-recommendation/list', [FacultyController::class, 'recommendation_list'])->name('recommendation_list');
+    Route::get('/student-job-recommendation/{id}/view', [FacultyController::class, 'recommendation_view'])->name('recommendation_view');
+    Route::get('/student-job-recommendation/{id}/decline', [FacultyController::class, 'recommendation_faculty_decline'])->name('recommendation_faculty_decline');
+    Route::get('/student-job-recommendation/{id}/approve', [FacultyController::class, 'recommendation_faculty_approve'])->name('recommendation_faculty_approve');
+    Route::get('/student-job-recommendation/{id}/revoke', [FacultyController::class, 'recommendation_faculty_revoke_decision'])->name('recommendation_faculty_revoke_decision');
 });
 
 
@@ -119,6 +124,7 @@ Route::group(['prefix' => 'student','middleware' => ['auth', 'role:student']], f
     Route::get('/profile', [StudentController::class, 'profile'])->name('student_profile');
     Route::get('/profile/edit', [StudentController::class, 'profile_edit'])->name('student_profile_edit');
     Route::post('/profile/update', [StudentController::class, 'profile_update'])->name('student_profile_update');
+    Route::resource('job-recommendation', JobRecommendationController::class);  
 
 
     Route::get('/job-portal/list', [StudentController::class, 'job_portal_list'])->name('student-job-portal-list');

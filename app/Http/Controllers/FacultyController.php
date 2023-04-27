@@ -10,7 +10,6 @@ use App\Models\Image;
 use App\Models\JobRecommendation;
 use Illuminate\Support\Facades\Hash;
 class FacultyController extends Controller
-{   
 
     function recommendation_faculty_revoke_decision($id)
     {
@@ -100,6 +99,7 @@ class FacultyController extends Controller
             'skills_approved_or_declined' => $skills_approved_or_declined,
         ]);
     }
+
     function dashboard()
     {
         return view('facultypanel.dashboard.index');
