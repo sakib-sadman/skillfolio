@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2023 at 11:35 AM
+-- Generation Time: Mar 05, 2023 at 12:47 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -295,7 +295,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `gender`, `email_verified_at`, `phone`, `address`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', NULL, NULL, NULL, NULL, '$2y$10$GYCswAlpHTBNdGYVdDUTYOMnJ.oRWKv3154mw6ewKOgmW/lnVdadW', 1, NULL, '2023-03-05 07:18:27', '2023-03-05 07:18:27'),
+(1, 'Admin', 'admin@gmail.com', NULL, NULL, NULL, NULL, '$2y$10$GYCswAlpHTBNdGYVdDUTYOMnJ.oRWKv3154mw6ewKOgmW/lnVdadW', 1, 'eTmc0xj9Xyd0aUSGa0ED8eKiymyrqo0utE03lfi2AtUdsy2cVRLKOUoI5aDc', '2023-03-05 07:18:27', '2023-03-05 07:18:27'),
 (2, 'Faculty', 'faculty@gmail.com', NULL, NULL, NULL, NULL, '$2y$10$AUfsmAsn/5EmTN3OXtYJBe.hUJSnRTN/JIx14ov.KKc9sKKieqU2G', 1, NULL, '2023-03-05 07:18:28', '2023-03-05 07:18:28'),
 (3, 'Student', 'student@gmail.com', NULL, NULL, NULL, NULL, '$2y$10$IYTYhGKwFwCrqi7TqlrEies4/EVibYPgk6/R/dh0ELifXKL0cBNlm', 1, NULL, '2023-03-05 07:18:28', '2023-03-05 07:18:28');
 
