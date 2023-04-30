@@ -11,7 +11,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('logo/favicon.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('logo/fabricon.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -66,7 +66,9 @@
                             <div class="mb-3 form-password-toggle">
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" for="password">Password</label>
-                                   
+                                    {{--  <a href="auth-forgot-password-basic.html">
+                                        <small>Forgot Password?</small>
+                                    </a>  --}}
                                 </div>
                                 <div class="input-group input-group-merge">
                                     <input type="password" id="password" class="form-control" name="password"
@@ -97,12 +99,12 @@
 
                         </form>
 
-                        <p class="text-center">
+                        {{--  <p class="text-center">
                             <span>New on our platform?</span>
-                            <a href="{{route('registration')}}">
+                            <a href="auth-register-basic.html">
                                 <span>Create an account</span>
                             </a>
-                        </p>
+                        </p>  --}}
                     </div>
                 </div>
 
