@@ -5,7 +5,7 @@
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Profile / </span> {{ Auth::user()->name }}</h4>    
     <div class="row">
         <!-- Basic Layout -->
-        <div class="col-md-12 col-lg-6">
+        <div class="col-md-12 col-lg-12">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="mb-0">User Profile</h5>
