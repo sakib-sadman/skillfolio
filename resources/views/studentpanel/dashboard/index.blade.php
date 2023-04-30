@@ -16,7 +16,8 @@
                                     echo $a[$random_keys];                                
                                 ?> 
                                 </p>
-                                <a href="{{ route('generate_cv') }}" target="_blank" class="btn btn-sm btn-outline-primary">Download CV</a>
+
+                                <a href="{{ route('student_dashboard') }}" class="btn btn-sm btn-outline-primary">Read More</a>
                             </div>
                         </div>
                         <div class="col-sm-5 text-center text-sm-left">

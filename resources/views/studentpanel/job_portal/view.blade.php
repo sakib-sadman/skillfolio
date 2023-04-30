@@ -67,9 +67,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-job-details">Job Details <span style="color: red;">*</span></label>
                             <div class="col-sm-10">
-                                <p>
-                                    {!! $job_portal->job_details !!}
-                                </p>
+                                <textarea name="job_details" id="basic-default-editor1" class="form-control" cols="30" rows="10" disabled>{{ $job_portal->job_details ?? '' }}</textarea>
                             </div>
                         </div>
    

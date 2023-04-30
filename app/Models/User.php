@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -49,32 +48,6 @@ class User extends Authenticatable
 
     public function images() {
         return $this->morphMany(Image::class, 'parentable');
-    }
-
-    
-    public function works(): HasMany
-    {
-        return $this->hasMany(WorkExperience::class);
-    }
-
-    public function education(): HasMany
-    {
-        return $this->hasMany(Education::class);
-    }
-
-    public function training(): HasMany
-    {
-        return $this->hasMany(Training::class);
-    }
-
-    public function skills(): HasMany
-    {
-        return $this->hasMany(StudentSkills::class);
-    }
-
-    public function job_recommendations(): HasMany
-    {
-        return $this->hasMany(JobRecommendation::class);
     }
 
    

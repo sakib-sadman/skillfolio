@@ -11,11 +11,3 @@ Admin profile
 Admins can enable/disable a profile of a student during profile creation
 Cv creator 
 CV skill verification by email
-
-
-Work remains--
-
-
-3. Student Apply for Job Recommendation
-4. Faculty Varify the Job Recommendation with the student profile 
-5. CV Creator with the help of Student Profile 

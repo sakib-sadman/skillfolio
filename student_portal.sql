@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2023 at 04:37 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- Generation Time: Mar 05, 2023 at 11:35 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,44 +24,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `education`
---
-
-CREATE TABLE `education` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `institution` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `major` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `degree` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `start` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `end` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `education`
---
-
-INSERT INTO `education` (`id`, `user_id`, `institution`, `major`, `degree`, `start`, `end`, `created_at`, `updated_at`) VALUES
-(2, 3, 'Mohammadpur Preparatory Higher & Secondary School', 'Science', 'SSC', '2006', '2014', '2023-03-05 16:29:01', '2023-03-05 16:29:01'),
-(3, 3, 'B. A.F Shaheen College', 'Science', 'HSC', '2014', '2016', '2023-03-05 16:29:25', '2023-03-05 16:29:25'),
-(4, 3, 'United International University', 'Web Development', 'BSCSE', '2017', '2021', '2023-03-05 16:29:56', '2023-03-05 16:29:56'),
-(5, 3, 'United International University', 'Software Engineering', 'MSCSE', '2023', 'present', '2023-03-05 16:30:23', '2023-03-05 16:31:48');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -73,20 +45,13 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `images` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parentable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `parentable_type` varchar(255) NOT NULL,
   `parentable_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `images`
---
-
-INSERT INTO `images` (`id`, `url`, `type`, `parentable_type`, `parentable_id`, `created_at`, `updated_at`) VALUES
-(3, 'public/storage/images/users/Eyygwhu8Zo4o50R6E4IKBzt7iBhALevwvTNGj82a.jpg', 'jpg', 'App\\Models\\User', 3, '2023-03-16 16:26:20', '2023-03-16 16:26:20');
 
 -- --------------------------------------------------------
 
@@ -96,12 +61,12 @@ INSERT INTO `images` (`id`, `url`, `type`, `parentable_type`, `parentable_id`, `
 
 CREATE TABLE `job_portals` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `job_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job_location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job_salary` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `job_title` varchar(255) NOT NULL,
+  `job_location` varchar(255) NOT NULL,
+  `company_name` varchar(255) NOT NULL,
+  `job_salary` varchar(255) DEFAULT NULL,
   `job_deadline` date DEFAULT NULL,
-  `job_details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `job_details` text DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -134,7 +99,7 @@ INSERT INTO `job_portals` (`id`, `job_title`, `job_location`, `company_name`, `j
 (19, 'Roofer', 'West Eudoraberg', 'Nicolas, Smitham and McCullough', '52837', '2023-10-28', 'Vel cumque quidem omnis sed veniam qui. Sunt sint omnis doloremque vel. Molestias nobis quisquam voluptatem voluptate. A ea fugiat itaque laboriosam velit reprehenderit.\n\nAd voluptatem hic qui. Et tempore consequatur ut libero beatae debitis accusamus voluptatem. Eveniet eos magni aspernatur quia asperiores natus. Nam sunt minima quos et occaecati earum maxime. Et aperiam modi eveniet ut.\n\nConsequuntur aut blanditiis et quia. Excepturi magni incidunt voluptas fugiat rerum et nisi consequatur.', 0, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
 (20, 'Postal Service Mail Sorter', 'Huldamouth', 'Okuneva, Schneider and Blick', '77131', '2023-03-25', 'Eius et sed cumque dolorum consectetur. Ut autem quis facere voluptates incidunt possimus. Voluptates dolorem ipsa illo et accusamus. Veniam corporis ipsam explicabo officia ea.\n\nCorporis quod error inventore aut. Voluptas aut enim tenetur recusandae et exercitationem aut officiis.\n\nQuos aut neque odit cum ullam. Quibusdam tempora laboriosam quae nemo itaque ut dolorum.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
 (21, 'Woodworking Machine Setter', 'Janeborough', 'Lemke, Satterfield and Douglas', '48063', '2024-01-20', 'Est fugiat debitis et dolor ea voluptatem quo veniam. Hic nihil et eum vel. Omnis modi ea non aut maiores.\n\nUnde sunt temporibus qui fugiat qui temporibus. Cupiditate aliquid in repudiandae voluptates excepturi. Quo est sapiente tenetur et molestiae.\n\nEum et similique minus modi maiores inventore inventore eum. Qui laborum dignissimos eaque dolor numquam. Consequuntur quidem libero vel inventore et. Perspiciatis est ipsam tempora doloribus. Provident repudiandae corporis incidunt ut soluta vel.', 0, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
-(22, 'CFO', 'Donside', 'Lynch-Batz', '78348/- BDT', '2023-09-04', '<p>At quisquam quia reprehenderit voluptatem dignissimos ea suscipit. Quisquam suscipit minima qui doloremque perferendis aliquid. Ea autem aspernatur quis iure. Tempore est voluptatem amet facilis. Qui in consequuntur magnam corrupti reprehenderit fugit itaque ut. Ab porro quo eaque. Corrupti odio quos est at est a nesciunt. Accusantium corrupti fugiat ipsa doloribus et. Enim quo consequatur non inventore error voluptates quod. Molestias molestiae qui autem non officiis. Non esse sed ut molestiae recusandae et unde. Unde et molestiae distinctio.</p>', 0, NULL, '2023-03-05 09:49:01', '2023-03-05 17:44:40'),
+(22, 'CFO', 'Donside', 'Lynch-Batz', '78348', '2023-09-04', 'At quisquam quia reprehenderit voluptatem dignissimos ea suscipit. Quisquam suscipit minima qui doloremque perferendis aliquid. Ea autem aspernatur quis iure. Tempore est voluptatem amet facilis.\n\nQui in consequuntur magnam corrupti reprehenderit fugit itaque ut. Ab porro quo eaque. Corrupti odio quos est at est a nesciunt. Accusantium corrupti fugiat ipsa doloribus et.\n\nEnim quo consequatur non inventore error voluptates quod. Molestias molestiae qui autem non officiis. Non esse sed ut molestiae recusandae et unde. Unde et molestiae distinctio.', 0, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
 (23, 'Pump Operators', 'Port Darrinstad', 'Veum and Sons', '74713', '2023-04-23', 'Laborum a deserunt perferendis minus. Qui provident eos repudiandae corrupti veritatis. Ut similique et ullam tempore dolor est soluta. Voluptas placeat necessitatibus molestias est autem.\n\nVoluptates ipsum voluptas beatae voluptatibus. Nisi illo aut atque dolor placeat dignissimos est. Quia et sed rerum assumenda facilis tempore. Aut iusto porro nesciunt sint esse sequi repudiandae.\n\nCommodi eos et aut consequatur enim aut ipsam. Nam dolorum culpa facere fuga nulla veritatis praesentium. Rem eum sint et pariatur deleniti sequi et.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
 (24, 'Pharmacist', 'Port Delilah', 'Hayes Inc', '29567', '2023-11-09', 'Officiis voluptas ut ut aut enim. Fuga laudantium error fugit unde similique distinctio consequatur. Ut quidem qui sed est enim.\n\nQui assumenda qui ut magnam et ut ducimus. Reprehenderit et cumque quo cum perspiciatis. Provident enim consequatur enim maxime sunt sint dolore tempore.\n\nPraesentium et dolorem optio non dolor aut vitae. Ut minima consequatur nostrum quam est sequi et. Et ut quos incidunt id accusantium.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
 (25, 'Textile Knitting Machine Operator', 'North Gracielabury', 'Lebsack, Gibson and Schoen', '32802', '2023-04-26', 'Et ea hic id incidunt. Iusto molestiae quia nihil facilis ut corporis.\n\nId similique sed vero aut. Non totam impedit quidem ea architecto expedita. Ullam asperiores quam quos incidunt aut quod. Quia perferendis quia nisi tempora cumque et.\n\nFacere inventore enim sequi ipsam nihil commodi voluptatem. Accusantium architecto quia quam ullam perferendis. Optio a non accusantium voluptatem voluptatem architecto.', 0, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
@@ -163,33 +128,9 @@ INSERT INTO `job_portals` (`id`, `job_title`, `job_location`, `company_name`, `j
 (48, 'Head Nurse', 'Rebaport', 'Wiza-Senger', '57263', '2023-05-22', 'Nam pariatur quibusdam accusamus est. Natus adipisci quia sint porro cupiditate et occaecati. Est doloremque iure sequi soluta.\n\nTemporibus praesentium et et dolores unde debitis. Qui blanditiis natus quidem sed ullam. Eos consequatur cumque explicabo itaque iste sunt eum temporibus.\n\nQuisquam sapiente laborum quia et repellat. In natus quasi asperiores at consequuntur. Sint vero enim quae accusantium.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
 (49, 'Building Inspector', 'Floridaborough', 'Davis-Boehm', '68052', '2023-08-26', 'Est rerum libero omnis recusandae. Ipsam itaque tempora incidunt esse voluptas iure sed odit. Tempore dolorem et voluptates error beatae voluptate fugit dolorem. Eos consequatur laudantium reprehenderit possimus numquam cumque voluptatem.\n\nSed molestiae rem magnam voluptas commodi vel. Quos amet expedita rerum expedita cupiditate deleniti voluptatem ut. Qui maxime id ut iure voluptas non vero ut. Commodi culpa nulla autem aut. Asperiores incidunt sapiente iste aliquid et iste.\n\nEt harum vero dignissimos cum harum sit. Eos qui minus ipsum magni saepe omnis ex.', 0, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
 (50, 'Buyer', 'Hillsfurt', 'Stracke, Ernser and Robel', '57292', '2023-06-01', 'Quibusdam ducimus dolores consequatur tempore molestiae ullam molestiae. Quo vitae inventore in. Blanditiis temporibus minima ut.\n\nVelit debitis reiciendis aliquam. Excepturi tempore reprehenderit voluptatem iure iusto.\n\nSoluta odit ipsum deserunt quis. Reprehenderit nam aut sunt quam ut necessitatibus perferendis. Sed repellat asperiores dolore.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
-(51, 'Telecommunications Facility Examiner', 'Nikolasmouth', 'Wolff and Sons', '31030', '2023-08-02', 'Laboriosam aliquid sit dicta totam atque velit. Consequatur neque vero culpa vitae adipisci eum. Reiciendis nihil officiis tempore sapiente id doloribus omnis facilis. Quia omnis ut repellendus officia nemo.\n\nAutem occaecati neque ea. Temporibus earum odit deserunt voluptas dolorum maxime. Eveniet error laborum non odit numquam possimus. Nemo et cupiditate vel.\n\nIpsam architecto ut unde ipsum vitae. Animi aut repellendus iste saepe commodi ea atque. Architecto delectus rerum est est ut perferendis.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 17:47:22'),
+(51, 'Telecommunications Facility Examiner', 'Nikolasmouth', 'Wolff and Sons', '31030', '2023-08-02', 'Laboriosam aliquid sit dicta totam atque velit. Consequatur neque vero culpa vitae adipisci eum. Reiciendis nihil officiis tempore sapiente id doloribus omnis facilis. Quia omnis ut repellendus officia nemo.\n\nAutem occaecati neque ea. Temporibus earum odit deserunt voluptas dolorum maxime. Eveniet error laborum non odit numquam possimus. Nemo et cupiditate vel.\n\nIpsam architecto ut unde ipsum vitae. Animi aut repellendus iste saepe commodi ea atque. Architecto delectus rerum est est ut perferendis.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
 (52, 'Municipal Fire Fighting Supervisor', 'New Dulce', 'Gleichner-Gerlach', '36743', '2023-07-21', 'Cupiditate accusantium ut ut ea cumque non rerum. Porro quisquam sapiente accusamus doloribus minima. Rerum facilis quo accusamus in dolorem delectus ipsa. Necessitatibus voluptatem voluptatem laborum possimus consectetur sit inventore.\n\nEt reiciendis natus aperiam inventore neque molestiae. Aut veritatis quo voluptate omnis animi odit at. Pariatur odit unde voluptatem quam saepe.\n\nHic ut sit eius rerum. Placeat optio aut odit libero tempore qui deserunt rerum. Sequi rerum ut cupiditate sit voluptas et. Ipsum qui sunt dolorem ab error.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
-(53, 'Cement Mason and Concrete Finisher', 'Port Eldonside', 'Mitchell-Grady', '35807', '2024-02-17', 'Ipsam eos consectetur autem modi enim quia sed. Molestiae est consequatur veniam natus voluptatem quod. Ipsam aut est enim quasi ut. Aperiam unde nesciunt voluptatem perspiciatis. Molestias adipisci aut aut et.\n\nRepellendus veniam accusantium illum fugiat recusandae quia nihil praesentium. Ad quos architecto quo. Nesciunt optio architecto sapiente omnis.\n\nVoluptates aut adipisci ut provident itaque id. Vero sunt non cum quis est accusamus sint aut. Magnam autem hic omnis tempora assumenda dolorem. Corrupti et reprehenderit quisquam ut itaque corrupti similique.', 1, '2023-03-05 17:44:50', '2023-03-05 09:49:01', '2023-03-05 17:44:50'),
-(54, 'Django Developer', 'Dhaka', 'JIJLKL', '35000-45000/- BDT', '2023-03-31', '<p>Job Summary: We are seeking a talented Django Developer to join our dynamic team. As a Django Developer, you will be responsible for developing and maintaining web applications using Django framework. The ideal candidate will have strong experience in Python programming and web development with a passion for creating clean, efficient, and scalable code.</p><p><strong>Responsibilities:</strong></p><figure class=\"table\"><table><tbody><tr><td>asd</td><td>asd</td></tr></tbody></table></figure><ul><li>Developing, maintaining, and enhancing web applications using Django framework</li><li>Designing and implementing RESTful APIs</li><li>Writing clean, efficient, and reusable code</li><li>Collaborating with cross-functional teams to identify and solve complex problems</li><li>Participating in code review and testing to ensure high-quality deliverables</li><li>Staying up-to-date with industry trends and best practices in software development</li><li>Troubleshooting and debugging web applications</li><li>Developing and maintaining documentation for developed applications</li></ul><p>Requirements:</p><ul><li>Bachelor’s or Master’s degree in Computer Science or a related field</li><li>Strong experience in Python programming</li><li>Proficiency in Django framework</li><li>Experience with HTML/CSS, JavaScript, and jQuery</li><li>Experience with SQL databases (preferably PostgreSQL)</li><li>Familiarity with Git version control</li><li>Understanding of software development principles, design patterns, and best practices</li><li>Excellent problem-solving and communication skills</li><li>Ability to work independently and in a team environment</li><li>Strong attention to detail</li></ul><p>Nice to have:</p><ul><li>Experience with front-end frameworks such as React, Vue.js, or AngularJS</li><li>Experience with Docker and Kubernetes</li><li>Experience with AWS or other cloud services</li></ul><p>We offer competitive salary packages, flexible working hours, and opportunities for professional growth and development. If you are a motivated and passionate Django Developer looking for a challenging and rewarding career opportunity, please apply with your resume and cover letter.<br><br>send email to hr@gmail.com</p>', 1, NULL, '2023-03-05 17:44:03', '2023-03-05 17:44:03');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `job_recommendations`
---
-
-CREATE TABLE `job_recommendations` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `faculty_id` bigint(20) UNSIGNED NOT NULL,
-  `recommendation_letter` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` int(11) NOT NULL DEFAULT 0 COMMENT '0=pending, -1=not approved, 1=approved',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `job_recommendations`
---
-
-INSERT INTO `job_recommendations` (`id`, `user_id`, `faculty_id`, `recommendation_letter`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 2, '<p>Dear [Employer\'s Name],</p><p>I am writing to highly recommend [Employee\'s Name] for the position of [Position Name] in your organization. I had the pleasure of working with [Employee\'s Name] for [Duration of Employment] at [Previous Company/Institution] and I can confidently say that [he/she/they] is one of the best employees I have had the pleasure of working with.</p><p>[Employee\'s Name] is an incredibly hardworking, dedicated, and detail-oriented individual who always goes above and beyond in their work. [He/She/They] is a quick learner and has the ability to work well under pressure while maintaining a positive attitude. [He/She/They] is always willing to help out colleagues and is a team player in every sense of the word.</p><p>During [his/her/their] time at [Previous Company/Institution], [Employee\'s Name] demonstrated excellent communication skills, both written and verbal. [He/She/They] was responsible for [list of responsibilities], and consistently met or exceeded expectations in these areas. [He/She/They] was also instrumental in [list of achievements or contributions to the company/institution].</p><p>I believe that [Employee\'s Name] would be a valuable asset to your organization and I highly recommend [him/her/them] for the position of [Position Name]. [He/She/They] has my strongest endorsement, and I am confident that [he/she/they] would excel in [his/her/their] role at your company.</p><p>Please do not hesitate to contact me if you require any further information about [Employee\'s Name] or [his/her/their] work at [Previous Company/Institution].</p><p>Sincerely,</p><p>[Your Name]</p>', 1, '2023-03-14 20:18:58', '2023-03-16 15:38:18');
+(53, 'Cement Mason and Concrete Finisher', 'Port Eldonside', 'Mitchell-Grady', '35807', '2024-02-17', 'Ipsam eos consectetur autem modi enim quia sed. Molestiae est consequatur veniam natus voluptatem quod. Ipsam aut est enim quasi ut. Aperiam unde nesciunt voluptatem perspiciatis. Molestias adipisci aut aut et.\n\nRepellendus veniam accusantium illum fugiat recusandae quia nihil praesentium. Ad quos architecto quo. Nesciunt optio architecto sapiente omnis.\n\nVoluptates aut adipisci ut provident itaque id. Vero sunt non cum quis est accusamus sint aut. Magnam autem hic omnis tempora assumenda dolorem. Corrupti et reprehenderit quisquam ut itaque corrupti similique.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01');
 
 -- --------------------------------------------------------
 
@@ -199,7 +140,7 @@ INSERT INTO `job_recommendations` (`id`, `user_id`, `faculty_id`, `recommendatio
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -215,12 +156,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2022_10_30_080802_create_permission_tables', 1),
 (6, '2022_12_06_070819_create_images_table', 1),
 (7, '2023_03_03_150217_add_statusto_users_table', 1),
-(8, '2023_03_04_162232_create_job_portals_table', 1),
-(9, '2023_03_05_191900_create_education_table', 2),
-(10, '2023_03_05_192001_create_trainings_table', 2),
-(11, '2023_03_05_192032_create_work_experiences_table', 2),
-(12, '2023_03_11_191159_create_student_skills_table', 3),
-(13, '2023_03_15_014032_create_job_recommendations_table', 4);
+(8, '2023_03_04_162232_create_job_portals_table', 1);
 
 -- --------------------------------------------------------
 
@@ -230,7 +166,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -242,7 +178,7 @@ CREATE TABLE `model_has_permissions` (
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -253,9 +189,7 @@ CREATE TABLE `model_has_roles` (
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\User', 1),
 (2, 'App\\Models\\User', 2),
-(3, 'App\\Models\\User', 3),
-(3, 'App\\Models\\User', 4),
-(3, 'App\\Models\\User', 5);
+(3, 'App\\Models\\User', 3);
 
 -- --------------------------------------------------------
 
@@ -264,8 +198,8 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -277,8 +211,8 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -291,11 +225,11 @@ CREATE TABLE `permissions` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -309,8 +243,8 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -338,74 +272,20 @@ CREATE TABLE `role_has_permissions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student_skills`
---
-
-CREATE TABLE `student_skills` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `faculty_id` bigint(20) UNSIGNED NOT NULL,
-  `course_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `course_completed` date NOT NULL,
-  `course_grade` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `student_skills`
---
-
-INSERT INTO `student_skills` (`id`, `user_id`, `faculty_id`, `course_name`, `course_completed`, `course_grade`, `status`, `created_at`, `updated_at`) VALUES
-(2, 3, 2, 'sdfghdfsgh', '2023-03-15', 'B-', 1, '2023-03-11 13:35:07', '2023-03-11 16:04:40'),
-(4, 3, 2, 'sdfghdfsgh', '2023-03-15', 'B-', 1, '2023-03-11 13:35:07', '2023-03-11 16:05:15'),
-(5, 3, 2, 'sdfghdfsgh', '2023-03-15', 'B-', -1, '2023-03-11 13:35:07', '2023-03-11 16:05:25'),
-(6, 3, 2, 'sdfghdfsgh', '2023-03-15', 'B-', -1, '2023-03-11 13:35:07', '2023-03-11 16:07:34');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `trainings`
---
-
-CREATE TABLE `trainings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `institution` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `duration` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `training_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `trainings`
---
-
-INSERT INTO `trainings` (`id`, `user_id`, `title`, `institution`, `duration`, `training_date`, `description`, `created_at`, `updated_at`) VALUES
-(2, 3, 'Web Developement', 'Creative IT', '6', '2020-06-06', 'Learned laravel and PHP', '2023-03-05 16:31:05', '2023-03-05 16:31:05'),
-(3, 3, 'AWS Architecture', 'Azzad.com', '3', '2023-03-03', 'Learning AWS Architecture with lab', '2023-03-05 16:33:08', '2023-03-05 16:33:08');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gender` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `gender` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -415,48 +295,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `gender`, `email_verified_at`, `phone`, `address`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', 'male', NULL, '017', NULL, '$2y$10$GYCswAlpHTBNdGYVdDUTYOMnJ.oRWKv3154mw6ewKOgmW/lnVdadW', 1, 'ucbd3Iv1uTciXD6VJhDEcSnTY8Ue4cTaBV4c5MyvviJZThJ1aWWTNWY57vU5', '2023-03-05 07:18:27', '2023-03-05 17:37:28'),
-(2, 'Faculty', 'faculty@gmail.com', NULL, NULL, '019816322', NULL, '$2y$10$AUfsmAsn/5EmTN3OXtYJBe.hUJSnRTN/JIx14ov.KKc9sKKieqU2G', 1, 'hNpFG5LaQBh2Lgqj5ImQlL5zJyOSg8PGkzNUUc3acKXJZmVXeLkxtpyo2FDu', '2023-03-05 07:18:28', '2023-03-05 07:18:28'),
-(3, 'Student', 'student@gmail.com', 'male', NULL, '201', NULL, '$2y$10$IYTYhGKwFwCrqi7TqlrEies4/EVibYPgk6/R/dh0ELifXKL0cBNlm', 1, 'BuPsBF8o413amKgmn0lQCjiynwlhALLG48GGmWtz3E3IiPRxPkE2NAgRZwfV', '2023-03-05 07:18:28', '2023-03-11 14:49:13'),
-(4, 'Tushar', 'tushar@gmail.com', 'male', NULL, '01465463127', 'Mirpur', '$2y$10$lr7mi6gMo5z.yx4pprNA6edzdKmDbMwOsX.Xki6dCwF06dyc0Y5Ai', 0, NULL, '2023-03-11 14:29:04', '2023-03-11 14:40:32'),
-(5, 'asdfgasdf', 'adasdfasdfasdfmin@gmail.com', 'male', NULL, '134', 'asdfgasd', '$2y$10$Ov0.QqhxAaAmzTUqYi8eg.IGvV7Mnghzos.uts9mWTjVhGVKftFl6', 0, NULL, '2023-03-11 14:32:56', '2023-03-11 14:40:29');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `work_experiences`
---
-
-CREATE TABLE `work_experiences` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `work_place` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `start` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `end` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `job_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `work_experiences`
---
-
-INSERT INTO `work_experiences` (`id`, `user_id`, `work_place`, `designation`, `start`, `end`, `job_description`, `created_at`, `updated_at`) VALUES
-(2, 3, 'Paper Art', 'Jr Software Developer', '2021', '2021', 'Details', '2023-03-05 16:26:42', '2023-03-05 16:26:42'),
-(3, 3, 'Medigene IT', 'Software Engineer', '2023', 'present', 'Laravel', '2023-03-05 16:27:15', '2023-03-05 16:27:15'),
-(4, 3, 'Techstring IT', 'Co-founder & Managing Director', '2022', 'present', 'Maintain project mapping and all others', '2023-03-05 16:27:56', '2023-03-05 16:28:26');
+(1, 'Admin', 'admin@gmail.com', NULL, NULL, NULL, NULL, '$2y$10$GYCswAlpHTBNdGYVdDUTYOMnJ.oRWKv3154mw6ewKOgmW/lnVdadW', 1, NULL, '2023-03-05 07:18:27', '2023-03-05 07:18:27'),
+(2, 'Faculty', 'faculty@gmail.com', NULL, NULL, NULL, NULL, '$2y$10$AUfsmAsn/5EmTN3OXtYJBe.hUJSnRTN/JIx14ov.KKc9sKKieqU2G', 1, NULL, '2023-03-05 07:18:28', '2023-03-05 07:18:28'),
+(3, 'Student', 'student@gmail.com', NULL, NULL, NULL, NULL, '$2y$10$IYTYhGKwFwCrqi7TqlrEies4/EVibYPgk6/R/dh0ELifXKL0cBNlm', 1, NULL, '2023-03-05 07:18:28', '2023-03-05 07:18:28');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `education`
---
-ALTER TABLE `education`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -476,12 +321,6 @@ ALTER TABLE `images`
 -- Indexes for table `job_portals`
 --
 ALTER TABLE `job_portals`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `job_recommendations`
---
-ALTER TABLE `job_recommendations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -540,18 +379,6 @@ ALTER TABLE `role_has_permissions`
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `student_skills`
---
-ALTER TABLE `student_skills`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `trainings`
---
-ALTER TABLE `trainings`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -559,20 +386,8 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indexes for table `work_experiences`
---
-ALTER TABLE `work_experiences`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `education`
---
-ALTER TABLE `education`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -584,25 +399,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `job_portals`
 --
 ALTER TABLE `job_portals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
-
---
--- AUTO_INCREMENT for table `job_recommendations`
---
-ALTER TABLE `job_recommendations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -620,31 +429,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `student_skills`
---
-ALTER TABLE `student_skills`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `trainings`
---
-ALTER TABLE `trainings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `work_experiences`
---
-ALTER TABLE `work_experiences`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

@@ -5,13 +5,13 @@
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Profile / </span> {{ Auth::user()->name }}</h4>    
     <div class="row">
         <!-- Basic Layout -->
-        <div class="col-md-12 col-lg-12">
+        <div class="col-md-12 col-lg-6">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
                     <h5 class="mb-0">User Profile</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('student_profile_update') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('student_profile_update') }}" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
@@ -49,12 +49,6 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-sm-2 col-form-label" for="basic-default-phone">Image</label>
-                            <div class="col-sm-10">
-                                <input type="file" class="form-control" id="basic-default-image" name="file[]" multiple />
-                            </div>
-                        </div>
-                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-password">Password</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
@@ -64,8 +58,6 @@
                                 <span style="color: red;font-weight:400;">(optional)</span>
                             </div>
                         </div>
-
-                        
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
                                 <button type="submit"  class="btn btn-success btn-sm">Save Changes</button>
