@@ -11,7 +11,7 @@
                     <h5 class="mb-0">User Profile</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('student_profile_update') }}" method="POST">
+                    <form action="{{ route('student_profile_update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
@@ -49,6 +49,12 @@
                             </div>
                         </div>
                         <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-default-phone">Image</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control" id="basic-default-image" name="file[]" multiple />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <label class="col-sm-2 col-form-label" for="basic-default-password">Password</label>
                             <div class="col-sm-10">
                                 <div class="input-group input-group-merge">
@@ -58,6 +64,8 @@
                                 <span style="color: red;font-weight:400;">(optional)</span>
                             </div>
                         </div>
+
+                        
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
                                 <button type="submit"  class="btn btn-success btn-sm">Save Changes</button>

@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Education;
 use App\Models\JobPortal;
 use App\Models\Training;
 use App\Models\User;
+use App\Models\Image;
 use App\Models\WorkExperience;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -21,6 +23,7 @@ class StudentController extends Controller
 
     function job_portal_list()
     {
+        // return
         $job_portals = JobPortal::where('status', 1)->orderby('id', 'desc')->get();
         return view('studentpanel.job_portal.index', compact('job_portals'));
     }
@@ -28,7 +31,6 @@ class StudentController extends Controller
     function job_portal_view($id)
     {
         $job_portal = JobPortal::find($id);
-        $job_portal = JobPortal::where('job_id',$id)->get();
 
         return view('studentpanel.job_portal.view', compact('job_portal'));
     }
@@ -36,7 +38,7 @@ class StudentController extends Controller
     {
 
         // return
-        $user = User::with('works','education', 'training')->find(Auth::id());
+        $user = User::with('works','education', 'training','image')->find(Auth::id());
         return view('studentpanel.profile.index',[
             'user'=> $user
         ]);
@@ -45,7 +47,7 @@ class StudentController extends Controller
     function profile_edit()
     {
         return view('studentpanel.profile.edit',[
-            'user'=> Auth::user()
+            'user'=> Auth::user()->load('image')
         ]);
     }
 
@@ -69,6 +71,32 @@ class StudentController extends Controller
         if(isset($request->password)){
             $user->password =  Hash::make($request->password);            
         }
+
+        if($request->hasFile('file')){
+            foreach ($user->images as $image) {
+                if (File::exists($image->url)) {
+                    unlink($image->url);
+                }
+                $image->delete();
+            }
+
+            foreach ($request->file('file') as $file) {               
+
+
+                Storage::putFile('public/storage/images/users/',$file);
+                $location ='public/storage/images/users/'.$file->hashName();
+    
+                $image = new Image();
+                $image->url = $location;
+                $image->type = $file->extension();
+                $image->parentable_id = $user->id;
+                $image->parentable_type = User::class;
+                $image->save();
+            }
+            
+        } 
+
+
         $user->save();
 
         return redirect()->route('student_profile')->with('success', 'Your Profile has been updated!');

@@ -19,7 +19,7 @@
     @endif
     <div class="d-flex justify-content-between">
         <div>
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Completed Course /</span> list</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Skills /</span> list</h4>
         </div>
         <div class="my-auto">
             <a href="{{ route('student-skills.create') }}">

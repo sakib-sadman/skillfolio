@@ -27,7 +27,7 @@
                         <div class="row mb-3">
                             <label for="asd1" class="col-sm-2 form-label">Faculty <span style="color: red;">*</span></label>
                             <div class="col-sm-10">
-                                <select class="form-select" id="asd1" name="faculty_id" disabled>
+                                <select class="form-select" id="asd1" name="faculty_id" required>
                                     <option value="" selected disabled>--select faculty--</option>
                                     @if ($faculties->isNotEmpty())
                                         @foreach ($faculties as $data)
