@@ -77,20 +77,31 @@
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Activities</span>
                     </li>
-
-{{--  
-                    <li class="menu-item {{ Request::routeIs('users.*') ? 'active' : '' }}">
-                        <a href="{{ route('users.index') }}" class="menu-link">
+                    <li class="menu-item {{ Request::routeIs('student_profile.*') ? 'active' : '' }}">
+                        <a href="{{ route('student_profile') }}" class="menu-link">
                             <i class="menu-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-                                  </svg>                                  
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                                  </svg>
+                                  
                             </i>
-                            <div data-i18n="Analytics">Users</div>
+                            <div data-i18n="Analytics">Profile Info</div>
                         </a>
                     </li>
-  --}}
+ 
+                    <li class="menu-item {{ Request::routeIs('student-job-portal-list.*') || Request::routeIs('student-job-portal-view.*') ? 'active' : '' }}">
+                        <a href="{{ route('student-job-portal-list') }}" class="menu-link">
+                            <i class="menu-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 002.25-2.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v2.25A2.25 2.25 0 006 10.5zm0 9.75h2.25A2.25 2.25 0 0010.5 18v-2.25a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25V18A2.25 2.25 0 006 20.25zm9.75-9.75H18a2.25 2.25 0 002.25-2.25V6A2.25 2.25 0 0018 3.75h-2.25A2.25 2.25 0 0013.5 6v2.25a2.25 2.25 0 002.25 2.25z" />
+                                </svg>
+                            </i>
+                            <div data-i18n="Analytics">Job Portal</div>
+                        </a>
+                    </li>
 
+
+                  
                    
 
 
