@@ -28,6 +28,8 @@ class StudentController extends Controller
     function job_portal_view($id)
     {
         $job_portal = JobPortal::find($id);
+        $job_portal = JobPortal::where('job_id',$id)->get();
+
         return view('studentpanel.job_portal.view', compact('job_portal'));
     }
     function profile()
@@ -74,8 +76,7 @@ class StudentController extends Controller
 
 
 
-
-    function AdminInfoInsertWorkExperience(Request $req)
+    function StudentInfoInsertWorkExperience(Request $req)
     {
         $req->validate([          
             'work_place' => 'required',
@@ -103,7 +104,7 @@ class StudentController extends Controller
         return back();
     }
 
-    function AdminWorkDelete($id)
+    function StudentWorkDelete($id)
     {
         $work = WorkExperience::find($id);
 
@@ -120,7 +121,7 @@ class StudentController extends Controller
     }
 
 
-    function AdminWorkEdit(Request $req)
+    function StudentWorkEdit(Request $req)
     {
         $work = WorkExperience::where('id' , $req->workID)->where('user_id', Auth::id())->first();
         $work->work_place = $req->edit_work_place;
@@ -143,7 +144,7 @@ class StudentController extends Controller
     }
 
 
-    function AdminInfoInsertEducation(Request $req)
+    function StudentInfoInsertEducation(Request $req)
     {
         $req->validate([          
             'institution' => 'required',
@@ -172,7 +173,7 @@ class StudentController extends Controller
     }
 
 
-    function AdminEducationDelete($id)
+    function StudentEducationDelete($id)
     {
         $education = Education::find($id);
 
@@ -189,7 +190,7 @@ class StudentController extends Controller
     }
 
 
-    function AdminEducationEdit(Request $req)
+    function StudentEducationEdit(Request $req)
     {
         $education = Education::where('id', $req->educationID)->first();
         $education->institution = $req->edit_institution;
@@ -210,7 +211,7 @@ class StudentController extends Controller
     }
 
 
-    function AdminTrainingDelete($id)
+    function StudentTrainingDelete($id)
     {
         $training = Training::find($id);
 
@@ -227,7 +228,7 @@ class StudentController extends Controller
     }
 
 
-    function AdminInfoInsertTraining(Request $req)
+    function StudentInfoInsertTraining(Request $req)
     {
         $req->validate([          
             'title' => 'required',
@@ -248,7 +249,7 @@ class StudentController extends Controller
     }
 
 
-    function AdminTrainingEdit(Request $req)
+    function StudentTrainingEdit(Request $req)
     {
         $train = Training::where('id',$req->trainingID)->first();
         $train->title = $req->edit_training_title;
@@ -261,7 +262,7 @@ class StudentController extends Controller
     }
 
 
-    function AdminInfoProfilePicture(Request $req)
+    function StudentInfoProfilePicture(Request $req)
     {
         
         if($req->hasFile('image'))

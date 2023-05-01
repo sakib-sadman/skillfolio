@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleManagementController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FacultyController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\JobPortalController;
+use App\Http\Controllers\StudentSkillsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -42,7 +42,7 @@ Route::post('/user-login', [LoginController::class, 'LOGIN'])->name('LOGIN');
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'role:admin']], function() {
     
 
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
+    Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('admin_dashboard');
 
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/profile/edit', [ProfileController::class, 'profile_edit'])->name('profile_edit');
@@ -56,6 +56,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth', 'role:admin']], funct
     Route::get('/get-role/{id}', [RoleManagementController::class, 'get_role'])->name('get_role');
     
     Route::resource('users', UserController::class);  
+    
     Route::resource('job-portal', JobPortalController::class);  
     Route::get('/job-portal/switch/{id}', [JobPortalController::class, 'job_portal_switch'])->name('job-portal-switch');
 
@@ -92,16 +93,18 @@ Route::group(['prefix' => 'student','middleware' => ['auth', 'role:student']], f
     Route::get('/job-portal/{id}/view', [StudentController::class, 'job_portal_view'])->name('student-job-portal-view');
 
     
-    Route::post('/info/work-experience/insert',[StudentController::class, 'AdminInfoInsertWorkExperience'])->name('AdminInfoInsertWorkExperience');
-    Route::get('/info/work/delete/{id}', [StudentController::class, 'AdminWorkDelete'])->name('AdminWorkDelete');
-    Route::post('/info/work/edit', [StudentController::class, 'AdminWorkEdit'])->name('AdminWorkEdit');
+    Route::post('/info/work-experience/insert',[StudentController::class, 'StudentInfoInsertWorkExperience'])->name('StudentInfoInsertWorkExperience');
+    Route::get('/info/work/delete/{id}', [StudentController::class, 'StudentWorkDelete'])->name('StudentWorkDelete');
+    Route::post('/info/work/edit', [StudentController::class, 'StudentWorkEdit'])->name('StudentWorkEdit');
 
-    Route::post('/info/education/insert', [StudentController::class, 'AdminInfoInsertEducation'])->name('AdminInfoInsertEducation');
-    Route::get('/info/education/delete/{id}', [StudentController::class, 'AdminEducationDelete'])->name('AdminEducationDelete');
-    Route::post('/info/education/edit', [StudentController::class, 'AdminEducationEdit'])->name('AdminEducationEdit');
+    Route::post('/info/education/insert', [StudentController::class, 'StudentInfoInsertEducation'])->name('StudentInfoInsertEducation');
+    Route::get('/info/education/delete/{id}', [StudentController::class, 'StudentEducationDelete'])->name('StudentEducationDelete');
+    Route::post('/info/education/edit', [StudentController::class, 'StudentEducationEdit'])->name('StudentEducationEdit');
 
-    Route::get('/info/training/delete/{id}', [StudentController::class, 'AdminTrainingDelete'])->name('AdminTrainingDelete');
-    Route::post('/info/training/insert', [StudentController::class, 'AdminInfoInsertTraining'])->name('AdminInfoInsertTraining');
-    Route::post('/info/training/edit', [StudentController::class, 'AdminTrainingEdit'])->name('AdminTrainingEdit');
+    Route::get('/info/training/delete/{id}', [StudentController::class, 'StudentTrainingDelete'])->name('StudentTrainingDelete');
+    Route::post('/info/training/insert', [StudentController::class, 'StudentInfoInsertTraining'])->name('StudentInfoInsertTraining');
+    Route::post('/info/training/edit', [StudentController::class, 'StudentTrainingEdit'])->name('StudentTrainingEdit');
+   
+    Route::resource('student-skills', StudentSkillsController::class);  
 
 });

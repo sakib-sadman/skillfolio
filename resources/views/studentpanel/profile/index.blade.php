@@ -46,7 +46,7 @@
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <input type="email" id="basic-default-email" class="form-control"
-                                    placeholder="admin@gmail.com" aria-label="john.doe"
+                                    placeholder="Student@gmail.com" aria-label="john.doe"
                                     aria-describedby="basic-default-email2" value="{{ $user->email }}" name="email"
                                     disabled />
                             </div>
@@ -76,228 +76,421 @@
         </div>
 
 
-     
-        <section>
-            <div class="container  m-t-60">
-                <div class="row">
-                    <div class="col-12 bg-dark">
-                        <h3 class="text-white">Education, Work Experience & Training</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="container bg-white">
+      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Other Information / </span> {{ Auth::user()->name }}</h4>
+        
+        <div>
+            <div class="bg-white">
                 <div class="main-content bg-white">
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
-                            <div class="row bg-white">
-                                <div class="col-12 bg-white">
-                                    <div class="tab-section">
-                                        <div class="tab">
-                                            <button class="tablinks active" onclick="openTab(event, 'Work_Experience')">Work Experience</button>
-                                            <button class="tablinks" onclick="openTab(event, 'Education')">Education</button>
-                                            <button class="tablinks" onclick="openTab(event, 'Training')">Training</button>
+                              <div class="row bg-white">
+                                  <div class="col-12 bg-white">
+                                      <div class="tab-section">
+                                          <div class="tab">
+                                              <button class="tablinks active" onclick="openTab(event, 'Work_Experience')">Work Experience</button>
+                                              <button class="tablinks" onclick="openTab(event, 'Education')">Education</button>
+                                              <button class="tablinks" onclick="openTab(event, 'Training')">Training</button>
 
-                                        </div>
-    
-                                        <div id="Work_Experience" class="tabcontent" >
-                                            <div class="tabcontent-details">                                        
-                                              <div class="tabcontent-row">
-                                                  <div class="col-12 ">
-                                                    @if ($user->works->isNotEmpty())
-                                                      @foreach ($user->works as $data)
-                                                        <div class="row tab-row">
-                                                              <div class="col-1">
-                                                                  <a>
-                                                                      <i class="fa fa-briefcase" style="font-size: 20px;"></i> 
-                                                                  </a>
-                                                              </div>
-                                                              <div class="col-8 col-md-8">
-                                                                  <p style="font-weight: bold;font-size:15px">{{ $data->designation }} &nbsp;|&nbsp; {{ $data->work_place }}</p>
-                                                                  <p style="font-size:13px;"> {{ Str::limit($data->job_description, 50,'.....') }}  <span style="color: blue;cursor:pointer;" onclick="Show('WorkPlaceEditForm-{{$data->id}}')" >See more</span></p>
-                                                                  <p style="font-size: 10px;">
-                                                                      {{$data->start}} to {{$data->end}}                                                             
-                                                                  </p>
-                                                              </div>
-          
-                                                              <div class="col-1 d-flex">
-                                                                  <a>
-                                                                    <i class="fa fa-pencil-square-o" aria-hidden="true" onclick="Show('WorkPlaceEditForm-{{$data->id}}')" style="cursor:pointer;color:blue;"></i>                                                          
-                                                                  </a>
-                                                                  &nbsp;&nbsp;
-                                                                  <a href="{{ route('AdminWorkDelete', $data->id) }}">
-                                                                    <i class="fa fa-trash" style="color:red;"></i>                                                            
-                                                                </a>
-                                                              </div>
-                                                        </div>
-                                                      @endforeach
-                                                    @else
-                                                        <div class="row tab-row">
-                                                          <div class="col">
-                                                            <b>No Data</b>
-                                                          </div>
-                                                        </div>
-                                                    @endif
-                                                        
-                                                    
-                                                    
-                                                    <div class="row tab-row">
-                                                        <div class="col-12">
-                                                          <p style="color: blue;cursor:pointer;font-weight:bold;" onclick="Show('WorkPlaceForm')"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add More</p>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="row tab-row mt-3" id="WorkPlaceForm" style="display: none;">
-                                                        <div class="col-12 bg-dark mb-3">
-                                                           <h4 class="text-white">Add new Work Experience</h4>
-                                                        </div>  
-                                                  
-                                                        <form action="{{ route('AdminInfoInsertWorkExperience') }}" method="POST">
-                                                          @csrf
-                                                          
-                                                          <div class="row">
-                                                            <div class="col-6">
-                                                              <div class="form-group">
-                                                                  <label>Work Place</label>
-                                                                  <input type="text" name="work_place" class="form-control" placeholder="Work place" required>
-                                                              </div>
-                                                              <div class="form-group">
-                                                                  <label>Start</label>
-                                                                  <input type="number" id="start_year" name="start_year" class="form-control" placeholder="start year">
-                                                              </div>
-                                                            </div>
-  
-                                                            <div class="col-6">
-                                                              <div class="form-group">
-                                                                  <label>Designation</label>
-                                                                  <input type="text" name="designation" class="form-control" placeholder="Designation" required>
-                                                              </div>
-                                                              <div class="form-group">
-                                                                  <div class="row">
-                                                                    <div class="col-6">
-                                                                      <label>End</label> 
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                      <label for="present">Present</label>
-                                                                      <input type="checkbox" value="present" name="present" id="present" onclick="Show('end_year')">
-                                                                    </div>
-                                                                  </div>
-                                                                  <input type="text" id="end_year" name="end_year" class="form-control" placeholder="end year" style="display:block;">                                                                  
-                                                              </div>
-                                                            </div>
-
-
-                                                            <div class="col-12">
-                                                              <div class="form-group">
-                                                                  <label>Job Description</label>
-                                                                  <textarea name="job_description" id="" cols="90" rows="8" class="form-control" ></textarea>
-
-                                                              </div>
-                                                            </div>
-
-                                                            <div class="col-12">
-                                                              <button class="btn btn-outline-primary" type="submit">Submit</button>
-                                                            </div>
-
-                                                          </div>
-                                                          
-
-                                                        </form>
-                                                      
-                                                    </div>
-
-
-                                                    @if ($user->works->isNotEmpty())
+                                          </div>
+      
+                                          <div id="Work_Experience" class="tabcontent" >
+                                              <div class="tabcontent-details">                                        
+                                                <div class="tabcontent-row">
+                                                    <div class="col-12 ">
+                                                      @if ($user->works->isNotEmpty())
                                                         @foreach ($user->works as $data)
-                                                            <div class="row tab-row mt-3" id="WorkPlaceEditForm-{{ $data->id }}" style="display: none;">
-                                                              <div class="col-12 bg-dark mb-3">
-                                                                <h4 class="text-white">Edit Work Experience</h4>
-                                                              </div>  
-                                                        
-                                                              <form action="{{ route('AdminWorkEdit') }}" method="POST">
-                                                                @csrf
-                                                                
-                                                                <input type="hidden" value="{{ $data->id }}" name="workID">
-                                                                <div class="row">
-                                                                  <div class="col-6">
-                                                                    <div class="form-group">
-                                                                        <label>Work Place</label>
-                                                                        <input type="text" value="{{ $data->work_place }}" name="edit_work_place" class="form-control" placeholder="Work place" required>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label>Start</label>
-                                                                        <input type="text" value="{{ $data->start }}" id="edit_start_year" name="edit_start_year" class="form-control" placeholder="start year">
-                                                                    </div>
-                                                                  </div>
-        
-                                                                  <div class="col-6">
-                                                                    <div class="form-group">
-                                                                        <label>Designation</label>
-                                                                        <input type="text" value="{{ $data->designation }}" name="edit_designation" class="form-control" placeholder="Designation" required>                              
-                                                                      </div>
-
-                                                                    
-                                                                    @if ($data->end == 'present')
-                                                                      <div class="form-group">
-                                                                          <div class="row">
-                                                                            <div class="col-6">
-                                                                              <label>End</label> 
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                              <label for="present">Present</label>
-                                                                              <input type="checkbox" value="present" name="present" checked id="present" onclick="Show('edit_end_year-{{$data->id}}')">
-                                                                            </div>
-                                                                          </div>
-                                                                          <input type="text" id="edit_end_year-{{$data->id}}" value="{{ $data->end }}" name="edit_end_year" class="form-control" placeholder="end year" style="display:none;">                                                                  
-                                                                      </div>
-                                                                    @else
-                                                                      <div class="form-group">
-                                                                          <div class="row">
-                                                                            <div class="col-6">
-                                                                              <label>End</label> 
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                              <label for="present">Present</label>
-                                                                              <input type="checkbox" value="present" name="present" id="present" onclick="Show('edit2_end_year-{{$data->id}}')">
-                                                                            </div>
-                                                                          </div>
-                                                                          <input type="text" id="edit2_end_year-{{$data->id}}" value="{{ $data->end }}" name="edit_end_year" class="form-control" placeholder="end year" style="display:block;">                                                                  
-                                                                      </div>
-                                                                    @endif
-                                                                    
-                                                                  </div>
-      
-      
-                                                                  <div class="col-12">
-                                                                    <div class="form-group">
-                                                                        <label>Job Description</label>
-                                                                        <textarea name="edit_job_description" class="form-control" cols="90" rows="5">{{ $data->job_description }}</textarea>
-                                                                    </div>
-                                                                  </div>
-      
-                                                                  <div class="col-12">
-                                                                    <button class="btn btn-outline-success" type="submit">Update</button>
-                                                                    &nbsp;
-                                                                </form>
-                                                                
-                                                                    <a onclick="Show('WorkPlaceEditForm-{{$data->id}}')" class="btn btn-outline-dark">Back</a>
-                                                                  </div>
+                                                          <div class="row tab-row">
+                                                                <div class="col-1">
+                                                                    <a>
+                                                                        <i class="fa fa-briefcase" style="font-size: 20px;"></i> 
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-8 col-md-8">
+                                                                    <p style="font-weight: bold;font-size:15px">{{ $data->designation }} &nbsp;|&nbsp; {{ $data->work_place }}</p>
+                                                                    <p style="font-size:13px;"> {{ Str::limit($data->job_description, 50,'.....') }}  <span style="color: blue;cursor:pointer;" onclick="Show('WorkPlaceEditForm-{{$data->id}}')" >See more</span></p>
+                                                                    <p style="font-size: 10px;">
+                                                                        {{$data->start}} to {{$data->end}}                                                             
+                                                                    </p>
+                                                                </div>
+            
+                                                                <div class="col-1 d-flex">
+                                                                    <a>
+                                                                      <i class="fa fa-pencil-square-o" aria-hidden="true" onclick="Show('WorkPlaceEditForm-{{$data->id}}')" style="cursor:pointer;color:blue;"></i>                                                          
+                                                                    </a>
+                                                                    &nbsp;&nbsp;
+                                                                    <a href="{{ route('StudentWorkDelete', $data->id) }}">
+                                                                      <i class="fa fa-trash" style="color:red;"></i>                                                            
+                                                                  </a>
                                                                 </div>
                                                           </div>
                                                         @endforeach
-                                                    @endif
-                                                  
-                                                  </div>  
-                                              </div>
-                                            </div>                                    
-                                        </div> 
+                                                      @else
+                                                          <div class="row tab-row">
+                                                            <div class="col">
+                                                              <b>No Data</b>
+                                                            </div>
+                                                          </div>
+                                                      @endif
+                                                          
+                                                      
+                                                      
+                                                      <div class="row tab-row">
+                                                          <div class="col-12">
+                                                            <p style="color: blue;cursor:pointer;font-weight:bold;" onclick="Show('WorkPlaceForm')"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add More</p>
+                                                          </div>
+                                                      </div>
+
+
+                                                      <div class="row tab-row mt-3" id="WorkPlaceForm" style="display: none;">
+                                                          <div class="col-12 bg-dark mb-3">
+                                                            <h4 class="text-white">Add new Work Experience</h4>
+                                                          </div>  
+                                                    
+                                                          <form action="{{ route('StudentInfoInsertWorkExperience') }}" method="POST">
+                                                            @csrf
+                                                            
+                                                            <div class="row">
+                                                              <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label>Work Place</label>
+                                                                    <input type="text" name="work_place" class="form-control" placeholder="Work place" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Start</label>
+                                                                    <input type="number" id="start_year" name="start_year" class="form-control" placeholder="start year">
+                                                                </div>
+                                                              </div>
     
-                                        <div id="Education" class="tabcontent" style="display: none;" >
+                                                              <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label>Designation</label>
+                                                                    <input type="text" name="designation" class="form-control" placeholder="Designation" required>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                      <div class="col-6">
+                                                                        <label>End</label> 
+                                                                      </div>
+                                                                      <div class="col-6">
+                                                                        <label for="present">Present</label>
+                                                                        <input type="checkbox" value="present" name="present" id="present" onclick="Show('end_year')">
+                                                                      </div>
+                                                                    </div>
+                                                                    <input type="text" id="end_year" name="end_year" class="form-control" placeholder="end year" style="display:block;">                                                                  
+                                                                </div>
+                                                              </div>
+
+
+                                                              <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label>Job Description</label>
+                                                                    <textarea name="job_description" id="" cols="90" rows="8" class="form-control" ></textarea>
+
+                                                                </div>
+                                                              </div>
+
+                                                              <div class="col-12 mt-3">
+                                                                <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+                                                              </div>
+
+                                                            </div>
+                                                            
+
+                                                          </form>
+                                                        
+                                                      </div>
+
+
+                                                      @if ($user->works->isNotEmpty())
+                                                          @foreach ($user->works as $data)
+                                                              <div class="row tab-row mt-3" id="WorkPlaceEditForm-{{ $data->id }}" style="display: none;">
+                                                                <div class="col-12 bg-dark mb-3">
+                                                                  <h4 class="text-white">Edit Work Experience</h4>
+                                                                </div>  
+                                                          
+                                                                <form action="{{ route('StudentWorkEdit') }}" method="POST">
+                                                                  @csrf
+                                                                  
+                                                                  <input type="hidden" value="{{ $data->id }}" name="workID">
+                                                                  <div class="row">
+                                                                    <div class="col-6">
+                                                                      <div class="form-group">
+                                                                          <label>Work Place</label>
+                                                                          <input type="text" value="{{ $data->work_place }}" name="edit_work_place" class="form-control" placeholder="Work place" required>
+                                                                      </div>
+                                                                      <div class="form-group">
+                                                                          <label>Start</label>
+                                                                          <input type="text" value="{{ $data->start }}" id="edit_start_year" name="edit_start_year" class="form-control" placeholder="start year">
+                                                                      </div>
+                                                                    </div>
+          
+                                                                    <div class="col-6">
+                                                                      <div class="form-group">
+                                                                          <label>Designation</label>
+                                                                          <input type="text" value="{{ $data->designation }}" name="edit_designation" class="form-control" placeholder="Designation" required>                              
+                                                                        </div>
+
+                                                                      
+                                                                      @if ($data->end == 'present')
+                                                                        <div class="form-group">
+                                                                            <div class="row">
+                                                                              <div class="col-6">
+                                                                                <label>End</label> 
+                                                                              </div>
+                                                                              <div class="col-6">
+                                                                                <label for="present">Present</label>
+                                                                                <input type="checkbox" value="present" name="present" checked id="present" onclick="Show('edit_end_year-{{$data->id}}')">
+                                                                              </div>
+                                                                            </div>
+                                                                            <input type="text" id="edit_end_year-{{$data->id}}" value="{{ $data->end }}" name="edit_end_year" class="form-control" placeholder="end year" style="display:none;">                                                                  
+                                                                        </div>
+                                                                      @else
+                                                                        <div class="form-group">
+                                                                            <div class="row">
+                                                                              <div class="col-6">
+                                                                                <label>End</label> 
+                                                                              </div>
+                                                                              <div class="col-6">
+                                                                                <label for="present">Present</label>
+                                                                                <input type="checkbox" value="present" name="present" id="present" onclick="Show('edit2_end_year-{{$data->id}}')">
+                                                                              </div>
+                                                                            </div>
+                                                                            <input type="text" id="edit2_end_year-{{$data->id}}" value="{{ $data->end }}" name="edit_end_year" class="form-control" placeholder="end year" style="display:block;">                                                                  
+                                                                        </div>
+                                                                      @endif
+                                                                      
+                                                                    </div>
+        
+        
+                                                                    <div class="col-12">
+                                                                      <div class="form-group">
+                                                                          <label>Job Description</label>
+                                                                          <textarea name="edit_job_description" class="form-control" cols="90" rows="5">{{ $data->job_description }}</textarea>
+                                                                      </div>
+                                                                    </div>
+        
+                                                                    <div class="col-12">
+                                                                      <button class="btn btn-success btn-sm" type="submit">Update</button>
+                                                                      &nbsp;
+                                                                  </form>
+                                                                  
+                                                                      <a onclick="Show('WorkPlaceEditForm-{{$data->id}}')" class="btn btn-dark btn-sm" style="color: white;">Back</a>
+                                                                    </div>
+                                                                  </div>
+                                                            </div>
+                                                          @endforeach
+                                                      @endif
+                                                    
+                                                    </div>  
+                                                </div>
+                                              </div>                                    
+                                          </div> 
+      
+                                          <div id="Education" class="tabcontent" style="display: none;" >
+                                              <div class="tabcontent-details">                                        
+                                                <div class="tabcontent-row">
+                                                    <div class="col-12">
+                                                        @if ($user->education->isNotEmpty())
+                                                            @foreach ($user->education as $data)
+                                                              <div class="row tab-row">
+                                                                  <div class="col-1 col-md-1">
+                                                                      <a>
+                                                                          <i class="fa fa-graduation-cap" style="font-size: 20px;"></i> 
+                                                                      </a>
+                                                                  </div>
+                                                                  <div class="col-8 col-md-8">
+                                                                    <p style="font-weight: bold;font-size:15px">{{ $data->institution }}</p>
+                                                                    <p style="font-size:13px;"> {{$data->degree}} &nbsp;|&nbsp; {{$data->major}} </p>
+                                                                    <p style="font-size: 10px;">
+                                                                        {{$data->start}} to {{$data->end}}                                                             
+                                                                    </p> 
+                                                                    
+                                                                  
+                                                                  </div>
+              
+                                                                  <div class="col-1 d-flex">
+                                                                    <a>
+                                                                      <i class="fa fa-pencil-square-o" aria-hidden="true" onclick="Show('EducationEditForm-{{$data->id}}')" style="cursor:pointer;color:blue;"></i>                                                          
+                                                                    </a>
+                                                                    &nbsp;&nbsp;
+                                                                    <a href="{{ route('StudentEducationDelete', $data->id) }}">
+                                                                      <i class="fa fa-trash" style="color:red;"></i>                                                            
+                                                                  </a>
+                                                                </div>
+                                                              </div>
+                                                            @endforeach
+                                                        @else
+                                                            <div class="row tab-row">
+                                                              <div class="col-12">
+                                                                <b>No Data</b>
+                                                              </div>
+                                                            </div>
+                                                        @endif
+
+                                                        @if ($user->education->isNotEmpty())
+                                                              @foreach ($user->education as $data)
+                                                                  <div class="row tab-row mt-3" id="EducationEditForm-{{ $data->id }}" style="display: none;">
+                                                                    <div class="col-12 bg-dark mb-3">
+                                                                      <h4 class="text-white">Edit Education</h4>
+                                                                    </div>  
+                                                              
+                                                                    <form action="{{ route('StudentEducationEdit') }}" method="POST">
+                                                                      @csrf
+                                                                      
+                                                                      <input type="hidden" value="{{ $data->id }}" name="educationID">
+                                                                      <div class="row">
+                                                                        <div class="col-12">
+                                                                          <div class="form-group">
+                                                                              <label>Institution</label>
+                                                                              <input type="text" value="{{ $data->institution }}" name="edit_institution" class="form-control" placeholder="Institution" required>
+                                                                          </div>
+                                                                        </div>
+              
+                                                                        <div class="col-6">
+                                                                          <div class="form-group">
+                                                                              <label>Degree</label>
+                                                                              <input type="text" value="{{ $data->degree }}" name="edit_degree" class="form-control" placeholder="Degree" required>                              
+                                                                          </div>
+                                                                        </div> 
+
+                                                                        <div class="col-6">
+                                                                          <div class="form-group">
+                                                                              <label>Major</label>
+                                                                              <input type="text" value="{{ $data->major }}" name="edit_major" class="form-control" placeholder="Major" required>                              
+                                                                          </div>
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                          <div class="form-group">
+                                                                              <label>Start</label>
+                                                                              <input type="text" value="{{ $data->start }}" name="edit_start" class="form-control" placeholder="Start" required>                              
+                                                                          </div>
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                          @if ($data->end == 'present')
+                                                                              <div class="row">
+                                                                                <div class="col-6">
+                                                                                  <label>End</label> 
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                  <label for="present">Present</label>
+                                                                                  <input type="checkbox" value="present" name="present" checked id="present" onclick="Show('edit_ed_end-{{$data->id}}')">
+                                                                                </div>
+                                                                            </div>
+                                                                            <input type="text" id="edit_ed_end-{{$data->id}}" value="{{ $data->end }}" name="edit_end" class="form-control" placeholder="end year" style="display:none;">                                                                  
+
+                                                                          @else
+                                                                            <div class="row">
+                                                                                <div class="col-6">
+                                                                                  <label>End</label> 
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                  <label for="present">Present</label>
+                                                                                  <input type="checkbox" value="present" name="present" id="present" onclick="Show('edit2_ed_end-{{$data->id}}')">
+                                                                                </div>
+                                                                            </div>
+                                                                            <input type="text" id="edit2_ed_end-{{$data->id}}" value="{{ $data->end }}" name="edit_end" class="form-control" placeholder="end year" style="display:block;">                                                                  
+
+                                                                          @endif 
+                                                                      </div>
+                                                                        
+                                                        
+                                                                        <div class="col-12">
+                                                                          <button class="btn btn-sm btn-success" type="submit">Update</button>
+                                                                          &nbsp;
+                                                                      </form>
+                                                                      
+                                                                          <a onclick="Show('EducationEditForm-{{$data->id}}')" class="btn btn-dark btn-sm" style="color: white;">Back</a>
+                                                                        </div>
+                                                                      </div>
+                                                                </div>
+                                                              @endforeach
+                                                          @endif
+
+
+                                                        <div class="row tab-row">
+                                                            <div class="col-12">
+                                                              <p style="color: blue;cursor:pointer;font-weight:bold;" onclick="Show('EducationForm')"><i class="fa fa-plus" aria-hidden="true" ></i>&nbsp;Add More</p>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row tab-row mt-3" id="EducationForm" style="display: none;">
+                                                          <div class="col-12 bg-dark mb-3">
+                                                            <h4 class="text-white">Add new Education</h4>
+                                                          </div>  
+                                                    
+                                                          <form action="{{ route('StudentInfoInsertEducation') }}" method="POST">
+                                                            @csrf
+                                                            
+                                                            <div class="row">
+                                                              <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label>Institution</label>
+                                                                    <input type="text" name="institution" class="form-control" placeholder="Institution" required>
+                                                                </div>
+                                                              </div>
+
+                                                              <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label>Degree</label>
+                                                                    <input type="text" name="degree" class="form-control" placeholder="Degree" required>
+                                                                </div>
+                                                              </div>
+    
+                                                              <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label>Major</label>
+                                                                    <input type="text" name="major" class="form-control" placeholder="Major" required>
+                                                                </div>
+                                                              </div>
+
+                                                              <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label>Start</label>
+                                                                    <input type="text" name="ed_start" id="ed_start" class="form-control" placeholder="Start" required>
+                                                                </div>
+                                                              </div>
+
+                                                              <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                      <div class="col-6">
+                                                                        <label>End</label> 
+                                                                      </div>
+                                                                      <div class="col-6">
+                                                                        <label for="present">Present</label>
+                                                                        <input type="checkbox" value="present" name="present" id="ed_present" onclick="Show('ed_end')">
+                                                                      </div>
+                                                                    </div>
+                                                                    <input type="text" id="ed_end" name="ed_end" class="form-control" placeholder="end year" style="display:block;">                                                                  
+                                                                </div>  
+                                                              </div>
+                                                              
+
+                                                              <div class="col-12">
+                                                                <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+                                                              </div>
+
+                                                            </div>
+                                                            
+
+                                                          </form>
+                                                        
+                                                      </div>
+                                                        
+                                                    </div>  
+                                                </div>
+                                              </div>                                    
+                                          </div> 
+
+                                          <div id="Training" class="tabcontent" style="display: none;" >
                                             <div class="tabcontent-details">                                        
                                               <div class="tabcontent-row">
                                                   <div class="col-12">
-                                                      @if ($user->education->isNotEmpty())
-                                                          @foreach ($user->education as $data)
+                                                      @if ($user->training->isNotEmpty())
+                                                          @foreach ($user->training as $data)
                                                             <div class="row tab-row">
                                                                 <div class="col-1 col-md-1">
                                                                     <a>
@@ -305,21 +498,28 @@
                                                                     </a>
                                                                 </div>
                                                                 <div class="col-8 col-md-8">
-                                                                  <p style="font-weight: bold;font-size:15px">{{ $data->institution }}</p>
-                                                                  <p style="font-size:13px;"> {{$data->degree}} &nbsp;|&nbsp; {{$data->major}} </p>
-                                                                  <p style="font-size: 10px;">
-                                                                      {{$data->start}} to {{$data->end}}                                                             
+                                                                  <p style="font-weight: bold;font-size:15px">{{ $data->title }}</p>
+                                                                  <p style="font-size:13px;"> {{$data->institution}}</p>
+                                                                  <p style="font-size: 11px;">
+                                                                    Duration: {{$data->duration}}   
+                                                                  </p>
+                                                                  <p style="font-size: 10px;">                                                                    
+                                                                      {{ $data->training_date}}                                                       
                                                                   </p> 
                                                                   
-                                                                 
+                                                                  <p style="font-size: 10px;">
+                                                                    {{Str::limit($data->description, 50,'.....')}}                                                            
+                                                                </p> 
+                                                                  
+                                                                
                                                                 </div>
             
                                                                 <div class="col-1 d-flex">
                                                                   <a>
-                                                                    <i class="fa fa-pencil-square-o" aria-hidden="true" onclick="Show('EducationEditForm-{{$data->id}}')" style="cursor:pointer;color:blue;"></i>                                                          
+                                                                    <i class="fa fa-pencil-square-o" aria-hidden="true" onclick="Show('TrainingEditForm-{{$data->id}}')" style="cursor:pointer;color:blue;"></i>                                                          
                                                                   </a>
                                                                   &nbsp;&nbsp;
-                                                                  <a href="{{ route('AdminEducationDelete', $data->id) }}">
+                                                                  <a href="{{ route('StudentTrainingDelete', $data->id) }}">
                                                                     <i class="fa fa-trash" style="color:red;"></i>                                                            
                                                                 </a>
                                                               </div>
@@ -333,104 +533,93 @@
                                                           </div>
                                                       @endif
 
-                                                      @if ($user->education->isNotEmpty())
-                                                            @foreach ($user->education as $data)
-                                                                <div class="row tab-row mt-3" id="EducationEditForm-{{ $data->id }}" style="display: none;">
+                                                      @if ($user->training->isNotEmpty())
+                                                            @foreach ($user->training as $data)
+                                                                <div class="row tab-row mt-3" id="TrainingEditForm-{{ $data->id }}" style="display: none;">
                                                                   <div class="col-12 bg-dark mb-3">
-                                                                    <h4 class="text-white">Edit Education</h4>
+                                                                    <h4 class="text-white">Edit Training</h4>
                                                                   </div>  
                                                             
-                                                                  <form action="{{ route('AdminEducationEdit') }}" method="POST">
+                                                                  <form action="{{ route('StudentTrainingEdit') }}" method="POST">
                                                                     @csrf
                                                                     
-                                                                    <input type="hidden" value="{{ $data->id }}" name="educationID">
-                                                                    <div class="row">
-                                                                      <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label>Institution</label>
-                                                                            <input type="text" value="{{ $data->institution }}" name="edit_institution" class="form-control" placeholder="Institution" required>
-                                                                        </div>
-                                                                      </div>
-            
-                                                                      <div class="col-6">
-                                                                        <div class="form-group">
-                                                                            <label>Degree</label>
-                                                                            <input type="text" value="{{ $data->degree }}" name="edit_degree" class="form-control" placeholder="Degree" required>                              
-                                                                        </div>
-                                                                      </div> 
-
-                                                                      <div class="col-6">
-                                                                        <div class="form-group">
-                                                                            <label>Major</label>
-                                                                            <input type="text" value="{{ $data->major }}" name="edit_major" class="form-control" placeholder="Major" required>                              
-                                                                        </div>
-                                                                      </div>
-
-                                                                      <div class="col-6">
-                                                                        <div class="form-group">
-                                                                            <label>Start</label>
-                                                                            <input type="text" value="{{ $data->start }}" name="edit_start" class="form-control" placeholder="Start" required>                              
-                                                                        </div>
-                                                                      </div>
-
-                                                                      <div class="col-6">
-                                                                        @if ($data->end == 'present')
-                                                                            <div class="row">
-                                                                              <div class="col-6">
-                                                                                <label>End</label> 
-                                                                              </div>
-                                                                              <div class="col-6">
-                                                                                <label for="present">Present</label>
-                                                                                <input type="checkbox" value="present" name="present" checked id="present" onclick="Show('edit_ed_end-{{$data->id}}')">
-                                                                              </div>
+                                                                    <input type="hidden" value="{{ $data->id }}" name="trainingID">
+                                                                      <div class="row">
+                                                                        <div class="col-12">
+                                                                          <div class="form-group">
+                                                                              <label>Training Title</label>
+                                                                              <input type="text" name="edit_training_title" value="{{ $data->title }}" class="form-control" placeholder="Title" required>
                                                                           </div>
-                                                                          <input type="text" id="edit_ed_end-{{$data->id}}" value="{{ $data->end }}" name="edit_end" class="form-control" placeholder="end year" style="display:none;">                                                                  
+                                                                        </div>
 
-                                                                        @else
-                                                                          <div class="row">
-                                                                              <div class="col-6">
-                                                                                <label>End</label> 
-                                                                              </div>
-                                                                              <div class="col-6">
-                                                                                <label for="present">Present</label>
-                                                                                <input type="checkbox" value="present" name="present" id="present" onclick="Show('edit2_ed_end-{{$data->id}}')">
-                                                                              </div>
+                                                                        <div class="col-12">
+                                                                          <div class="form-group">
+                                                                              <label>Institution</label>
+                                                                              <input type="text" name="edit_training_institution" value="{{ $data->institution }}" class="form-control" placeholder="Institution" required>
                                                                           </div>
-                                                                          <input type="text" id="edit2_ed_end-{{$data->id}}" value="{{ $data->end }}" name="edit_end" class="form-control" placeholder="end year" style="display:block;">                                                                  
+                                                                        </div>
 
-                                                                        @endif 
-                                                                    </div>
-                                                                      
+                                                                        <div class="col-6">
+                                                                          <div class="form-group">
+                                                                              <label>Training Date</label>
+                                                                              <input type="date" name="edit_training_training_date" value="{{ $data->training_date }}" class="form-control" required>
+                                                                          </div>
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                          <div class="form-group">
+                                                                              <label>Duration</label>
+                                                                              <input type="text" name="edit_training_duration" value="{{ $data->duration }}" class="form-control" placeholder="duration" required>
+                                                                          </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-6">
+                                                                          <div class="form-group">
+                                                                              <label>Description</label>
+                                                                              <textarea name="edit_training_description" class="form-control" cols="100" rows="5">{{ $data->description }}</textarea>
+                                                                          </div>
+                                                                        </div>
+
+
+                                                                    
                                                       
                                                                       <div class="col-12">
-                                                                        <button class="btn btn-outline-success" type="submit">Update</button>
+                                                                        <button class="btn btn-success btn-sm" type="submit">Update</button>
                                                                         &nbsp;
-                                                                    </form>
+                                                                        </form>
                                                                     
-                                                                        <a onclick="Show('EducationEditForm-{{$data->id}}')" class="btn btn-outline-dark">Back</a>
+                                                                        <a onclick="Show('TrainingEditForm-{{$data->id}}')" class="btn btn-sm btn-dark" style="color: white;">Back</a>
                                                                       </div>
                                                                     </div>
-                                                              </div>
+                                                                  </div>
                                                             @endforeach
                                                         @endif
 
 
                                                       <div class="row tab-row">
                                                           <div class="col-12">
-                                                            <p style="color: blue;cursor:pointer;font-weight:bold;" onclick="Show('EducationForm')"><i class="fa fa-plus" aria-hidden="true" ></i>&nbsp;Add More</p>
+                                                            <p style="color: blue;cursor:pointer;font-weight:bold;" onclick="Show('TrainingForm')"><i class="fa fa-plus" aria-hidden="true" ></i>&nbsp;Add More</p>
                                                           </div>
                                                       </div>
 
 
-                                                      <div class="row tab-row mt-3" id="EducationForm" style="display: none;">
+                                                      <div class="row tab-row mt-3" id="TrainingForm" style="display: none;">
                                                         <div class="col-12 bg-dark mb-3">
-                                                           <h4 class="text-white">Add new Education</h4>
+                                                          <h4 class="text-white">Add new Training</h4>
                                                         </div>  
                                                   
-                                                        <form action="{{ route('AdminInfoInsertEducation') }}" method="POST">
+                                                        <form action="{{ route('StudentInfoInsertTraining') }}" method="POST">
                                                           @csrf
                                                           
                                                           <div class="row">
+                                                            <div class="col-12">
+                                                              <div class="form-group">
+                                                                  <label>Training Title</label>
+                                                                  <input type="text" name="title" class="form-control" placeholder="Title" required>
+                                                              </div>
+                                                            </div>
+
                                                             <div class="col-12">
                                                               <div class="form-group">
                                                                   <label>Institution</label>
@@ -440,43 +629,30 @@
 
                                                             <div class="col-6">
                                                               <div class="form-group">
-                                                                  <label>Degree</label>
-                                                                  <input type="text" name="degree" class="form-control" placeholder="Degree" required>
-                                                              </div>
-                                                            </div>
-  
-                                                            <div class="col-6">
-                                                              <div class="form-group">
-                                                                  <label>Major</label>
-                                                                  <input type="text" name="major" class="form-control" placeholder="Major" required>
+                                                                  <label>Training date</label>
+                                                                  <input type="date" name="training_date" class="form-control " required>
                                                               </div>
                                                             </div>
 
                                                             <div class="col-6">
                                                               <div class="form-group">
-                                                                  <label>Start</label>
-                                                                  <input type="text" name="ed_start" id="ed_start" class="form-control" placeholder="Start" required>
+                                                                  <label>Duration</label>
+                                                                  <input type="text" name="duration" class="form-control" placeholder="duration" required>
                                                               </div>
                                                             </div>
 
                                                             <div class="col-6">
                                                               <div class="form-group">
-                                                                  <div class="row">
-                                                                    <div class="col-6">
-                                                                      <label>End</label> 
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                      <label for="present">Present</label>
-                                                                      <input type="checkbox" value="present" name="present" id="ed_present" onclick="Show('ed_end')">
-                                                                    </div>
-                                                                  </div>
-                                                                  <input type="text" id="ed_end" name="ed_end" class="form-control" placeholder="end year" style="display:block;">                                                                  
-                                                              </div>  
+                                                                  <label>Description</label>
+                                                                  <textarea name="description" class="form-control" cols="80" rows="5"></textarea>
+                                                              </div>
                                                             </div>
+
+                                                            
                                                             
 
                                                             <div class="col-12">
-                                                              <button class="btn btn-outline-primary" type="submit">Submit</button>
+                                                              <button class="btn btn-sm btn-primary" type="submit">Submit</button>
                                                             </div>
 
                                                           </div>
@@ -491,197 +667,15 @@
                                             </div>                                    
                                         </div> 
 
-                                        <div id="Training" class="tabcontent" style="display: none;" >
-                                          <div class="tabcontent-details">                                        
-                                            <div class="tabcontent-row">
-                                                <div class="col-12">
-                                                    @if ($user->training->isNotEmpty())
-                                                        @foreach ($user->training as $data)
-                                                          <div class="row tab-row">
-                                                              <div class="col-1 col-md-1">
-                                                                  <a>
-                                                                      <i class="fa fa-graduation-cap" style="font-size: 20px;"></i> 
-                                                                  </a>
-                                                              </div>
-                                                              <div class="col-8 col-md-8">
-                                                                <p style="font-weight: bold;font-size:15px">{{ $data->title }}</p>
-                                                                <p style="font-size:13px;"> {{$data->institution}}</p>
-                                                                <p style="font-size: 11px;">
-                                                                  Duration: {{$data->duration}}   
-                                                                </p>
-                                                                <p style="font-size: 10px;">                                                                    
-                                                                    {{ $data->training_date}}                                                       
-                                                                </p> 
-                                                                
-                                                                <p style="font-size: 10px;">
-                                                                  {{Str::limit($data->description, 50,'.....')}}                                                            
-                                                              </p> 
-                                                                
-                                                               
-                                                              </div>
-          
-                                                              <div class="col-1 d-flex">
-                                                                <a>
-                                                                  <i class="fa fa-pencil-square-o" aria-hidden="true" onclick="Show('TrainingEditForm-{{$data->id}}')" style="cursor:pointer;color:blue;"></i>                                                          
-                                                                </a>
-                                                                &nbsp;&nbsp;
-                                                                <a href="{{ route('AdminTrainingDelete', $data->id) }}">
-                                                                  <i class="fa fa-trash" style="color:red;"></i>                                                            
-                                                              </a>
-                                                            </div>
-                                                          </div>
-                                                        @endforeach
-                                                    @else
-                                                        <div class="row tab-row">
-                                                          <div class="col-12">
-                                                            <b>No Data</b>
-                                                          </div>
-                                                        </div>
-                                                    @endif
 
-                                                    @if ($user->training->isNotEmpty())
-                                                          @foreach ($user->training as $data)
-                                                              <div class="row tab-row mt-3" id="TrainingEditForm-{{ $data->id }}" style="display: none;">
-                                                                <div class="col-12 bg-dark mb-3">
-                                                                  <h4 class="text-white">Edit Training</h4>
-                                                                </div>  
-                                                          
-                                                                <form action="{{ route('AdminTrainingEdit') }}" method="POST">
-                                                                  @csrf
-                                                                  
-                                                                  <input type="hidden" value="{{ $data->id }}" name="trainingID">
-                                                                    <div class="row">
-                                                                      <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label>Training Title</label>
-                                                                            <input type="text" name="edit_training_title" value="{{ $data->title }}" class="form-control" placeholder="Title" required>
-                                                                        </div>
-                                                                      </div>
-
-                                                                      <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label>Institution</label>
-                                                                            <input type="text" name="edit_training_institution" value="{{ $data->institution }}" class="form-control" placeholder="Institution" required>
-                                                                        </div>
-                                                                      </div>
-
-                                                                      <div class="col-6">
-                                                                        <div class="form-group">
-                                                                            <label>Training Date</label>
-                                                                            <input type="date" name="edit_training_training_date" value="{{ $data->training_date }}" class="form-control" required>
-                                                                        </div>
-                                                                      </div>
-
-                                                                      <div class="col-6">
-                                                                        <div class="form-group">
-                                                                            <label>Duration</label>
-                                                                            <input type="text" name="edit_training_duration" value="{{ $data->duration }}" class="form-control" placeholder="duration" required>
-                                                                        </div>
-                                                                      </div>
-
-
-                                                                      <div class="col-6">
-                                                                        <div class="form-group">
-                                                                            <label>Description</label>
-                                                                            <textarea name="edit_training_description" class="form-control" cols="100" rows="5">{{ $data->description }}</textarea>
-                                                                        </div>
-                                                                      </div>
-
-
-                                                                   
-                                                    
-                                                                    <div class="col-12">
-                                                                      <button class="btn btn-outline-success" type="submit">Update</button>
-                                                                      &nbsp;
-                                                                      </form>
-                                                                  
-                                                                      <a onclick="Show('TrainingEditForm-{{$data->id}}')" class="btn btn-outline-dark">Back</a>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                          @endforeach
-                                                      @endif
-
-
-                                                    <div class="row tab-row">
-                                                        <div class="col-12">
-                                                          <p style="color: blue;cursor:pointer;font-weight:bold;" onclick="Show('TrainingForm')"><i class="fa fa-plus" aria-hidden="true" ></i>&nbsp;Add More</p>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="row tab-row mt-3" id="TrainingForm" style="display: none;">
-                                                      <div class="col-12 bg-dark mb-3">
-                                                         <h4 class="text-white">Add new Training</h4>
-                                                      </div>  
-                                                
-                                                      <form action="{{ route('AdminInfoInsertTraining') }}" method="POST">
-                                                        @csrf
-                                                        
-                                                        <div class="row">
-                                                          <div class="col-12">
-                                                            <div class="form-group">
-                                                                <label>Training Title</label>
-                                                                <input type="text" name="title" class="form-control" placeholder="Title" required>
-                                                            </div>
-                                                          </div>
-
-                                                          <div class="col-12">
-                                                            <div class="form-group">
-                                                                <label>Institution</label>
-                                                                <input type="text" name="institution" class="form-control" placeholder="Institution" required>
-                                                            </div>
-                                                          </div>
-
-                                                          <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label>Training date</label>
-                                                                <input type="date" name="training_date" class="form-control " required>
-                                                            </div>
-                                                          </div>
-
-                                                          <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label>Duration</label>
-                                                                <input type="text" name="duration" class="form-control" placeholder="duration" required>
-                                                            </div>
-                                                          </div>
-
-                                                          <div class="col-6">
-                                                            <div class="form-group">
-                                                                <label>Description</label>
-                                                                <textarea name="description" class="form-control" cols="80" rows="5"></textarea>
-                                                            </div>
-                                                          </div>
-
-                                                          
-                                                          
-
-                                                          <div class="col-12">
-                                                            <button class="btn btn-outline-primary" type="submit">Submit</button>
-                                                          </div>
-
-                                                        </div>
-                                                        
-
-                                                      </form>
-                                                    
-                                                  </div>
-                                                    
-                                                </div>  
-                                            </div>
-                                          </div>                                    
-                                      </div> 
-
-
-                                    </div>
-                                </div>                            
-                            </div>
+                                      </div>
+                                  </div>                            
+                              </div>
                         </div>
                     </div>
                 </div>
             </div>
-      </section>
+          </div>
     </div>
 
 </div>
