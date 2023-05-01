@@ -37,7 +37,6 @@ Route::post('/user-login', [LoginController::class, 'LOGIN'])->name('LOGIN');
 
 
 
-
 #~~~~~~~~~~~~ all admin panel routes ~~~~~~~~~~~~~~
 
 Route::group(['prefix' => 'admin','middleware' => ['auth', 'role:admin']], function() {
@@ -87,5 +86,22 @@ Route::group(['prefix' => 'student','middleware' => ['auth', 'role:student']], f
     Route::get('/profile', [StudentController::class, 'profile'])->name('student_profile');
     Route::get('/profile/edit', [StudentController::class, 'profile_edit'])->name('student_profile_edit');
     Route::post('/profile/update', [StudentController::class, 'profile_update'])->name('student_profile_update');
+
+
+    Route::get('/job-portal/list', [StudentController::class, 'job_portal_list'])->name('student-job-portal-list');
+    Route::get('/job-portal/{id}/view', [StudentController::class, 'job_portal_view'])->name('student-job-portal-view');
+
+    
+    Route::post('/info/work-experience/insert',[StudentController::class, 'AdminInfoInsertWorkExperience'])->name('AdminInfoInsertWorkExperience');
+    Route::get('/info/work/delete/{id}', [StudentController::class, 'AdminWorkDelete'])->name('AdminWorkDelete');
+    Route::post('/info/work/edit', [StudentController::class, 'AdminWorkEdit'])->name('AdminWorkEdit');
+
+    Route::post('/info/education/insert', [StudentController::class, 'AdminInfoInsertEducation'])->name('AdminInfoInsertEducation');
+    Route::get('/info/education/delete/{id}', [StudentController::class, 'AdminEducationDelete'])->name('AdminEducationDelete');
+    Route::post('/info/education/edit', [StudentController::class, 'AdminEducationEdit'])->name('AdminEducationEdit');
+
+    Route::get('/info/training/delete/{id}', [StudentController::class, 'AdminTrainingDelete'])->name('AdminTrainingDelete');
+    Route::post('/info/training/insert', [StudentController::class, 'AdminInfoInsertTraining'])->name('AdminInfoInsertTraining');
+    Route::post('/info/training/edit', [StudentController::class, 'AdminTrainingEdit'])->name('AdminTrainingEdit');
 
 });
