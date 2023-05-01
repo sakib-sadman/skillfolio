@@ -7,6 +7,7 @@ use Auth;
 use App\Models\User;
 use App\Models\StudentSkills;
 use App\Models\Image;
+use App\Models\JobPortal;
 use App\Models\JobRecommendation;
 use Illuminate\Support\Facades\Hash;
 class FacultyController extends Controller
@@ -102,7 +103,13 @@ class FacultyController extends Controller
     }
     function dashboard()
     {
-        return view('facultypanel.dashboard.index');
+        $totalStudent = User::role('student')->count() ?? 0;
+        $totalFaculty = User::role('faculty')->count() ?? 0;
+        
+        $totalSkillDevelopmentApproval = StudentSkills::where('faculty_id', Auth::id())->where('status',1)->count() ?? 0;
+        $totalJobRecommendationApproval = JobRecommendation::where('faculty_id', Auth::id())->where('status',1)->count() ?? 0;
+
+        return view('facultypanel.dashboard.index',compact('totalStudent','totalFaculty', 'totalSkillDevelopmentApproval','totalJobRecommendationApproval'));
     }
 
      function profile()

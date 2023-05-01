@@ -16,8 +16,7 @@
                                     echo $a[$random_keys];                                
                                 ?> 
                                 </p>
-
-                                <a href="{{ route('student_dashboard') }}" class="btn btn-sm btn-outline-primary">Read More</a>
+                                <a href="{{ route('generate_cv') }}" target="_blank" class="btn btn-sm btn-outline-primary">Download CV</a>
                             </div>
                         </div>
                         <div class="col-sm-5 text-center text-sm-left">
@@ -27,6 +26,52 @@
                                     data-app-dark-img="illustrations/man-with-laptop-dark.png"
                                     data-app-light-img="illustrations/man-with-laptop-light.png" />
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-4 order-0 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3>Student</h3>
+                            <h3 class="card-title mb-2">{{ $totalStudent }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-4 order-0 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3>Faculty</h3>
+                            <h3 class="card-title mb-2">{{ $totalFaculty }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-6 col-md-4 order-0 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3>Job Portals</h3>
+                            <h3 class="card-title mb-2">{{ $totalJobportal }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 order-0 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3>Total Skills</h3>
+                            <h3 class="card-title mb-2">{{ $totalSkills }}</h3>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
@@ -66,5 +67,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Training::class);
     }
+
+    public function skills(): HasMany
+    {
+        return $this->hasMany(StudentSkills::class);
+    }
+
+    public function job_recommendations(): HasMany
+    {
+        return $this->hasMany(JobRecommendation::class);
+    }
+
+    public function skill_test(): HasOne
+    {
+        return $this->HasOne(SkillTest::class);
+    }
+
    
+
 }

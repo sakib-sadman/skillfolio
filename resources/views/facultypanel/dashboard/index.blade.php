@@ -34,5 +34,52 @@
             
         </div>
         
+
+        <div class="row">
+            <div class="col-lg-6 col-md-4 order-0 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3>Student</h3>
+                            <h3 class="card-title mb-2">{{ $totalStudent }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-6 col-md-4 order-0 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3>Faculty</h3>
+                            <h3 class="card-title mb-2">{{ $totalFaculty }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-4 order-0 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3>Skills Approval</h3>
+                            <h3 class="card-title mb-2">{{ $totalSkillDevelopmentApproval }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-lg-6 col-md-4 order-0 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h3>Job Recommendation</h3>
+                            <h3 class="card-title mb-2">{{ $totalJobRecommendationApproval }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
     </div>
 @endsection

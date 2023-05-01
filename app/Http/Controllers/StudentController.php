@@ -8,16 +8,63 @@ use App\Models\JobPortal;
 use App\Models\Training;
 use App\Models\User;
 use App\Models\Image;
+use App\Models\StudentSkills;
 use App\Models\WorkExperience;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Auth;
+use Dompdf\Dompdf;
+use Illuminate\Support\Facades\View;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Options;
 
 class StudentController extends Controller
 {
+
+    function generate_cv(){
+        // return
+        $user = Auth::user()
+        ->load([
+            'works',
+            'education',
+            'training',
+            'image',
+            'skills.faculty' => function ($query) {
+                $query->select('id', 'name');
+            },
+            'skills' => function ($query) {
+                $query->where('status', 1);
+            },
+            'job_recommendations' => function ($query) {
+                $query->where('status', 1)
+                    ->with('faculty:id,name,email,phone');
+            },
+            
+        ]);
+
+        $pdf = new Dompdf();
+        $pdf->setBasePath(public_path());
+
+        $options = new Options();
+        $options->set('isRemoteEnabled', true);
+        $pdf->setOptions($options);
+
+        $html = View::make('studentpanel.cv.index', compact('user'))->render();
+        $pdf->loadHtml($html);
+        $pdf->render();
+
+        $fileName = $user->name.'-CV.pdf';
+        return $pdf->stream($fileName);
+
+    }
+
     function dashboard()
     {
-        return view('studentpanel.dashboard.index');
+        $totalStudent = User::role('student')->count() ?? 0;
+        $totalFaculty = User::role('faculty')->count() ?? 0;
+        $totalJobportal = JobPortal::where('status', 1)->count() ?? 0;
+        $totalSkills = StudentSkills::where('user_id', Auth::id())->where('status', 1)->count() ?? 0;
+        return view('studentpanel.dashboard.index',compact('totalStudent','totalFaculty','totalJobportal','totalSkills'));
     }
 
 

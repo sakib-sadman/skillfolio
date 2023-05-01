@@ -11,6 +11,7 @@ use App\Http\Controllers\JobPortalController;
 use App\Http\Controllers\StudentSkillsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JobRecommendationController;
+use App\Http\Controllers\SkillTestController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -28,7 +29,22 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes(['verify' => true]);
 Route::get('/', function () {
-    return redirect()->route('admin_dashboard');
+
+    if (Auth::check()){
+        if(Auth::user()->hasRole('admin')){
+            return redirect()->route('admin_dashboard');
+        }
+        else if(Auth::user()->hasRole('student')){
+            return redirect()->route('student_dashboard');
+        }
+        else if(Auth::user()->hasRole('faculty')){
+            return redirect()->route('faculty_dashboard');
+        }
+    }else{
+       return redirect()->route('admin_dashboard');
+
+    }
+      
 });
 
 Route::get('/home', function () {
@@ -100,6 +116,9 @@ Route::group(['prefix' => 'faculty','middleware' => ['auth', 'role:faculty']], f
 Route::group(['prefix' => 'student','middleware' => ['auth', 'role:student']], function() {
     
     Route::get('/dashboard', [StudentController::class, 'dashboard'])->name('student_dashboard');
+    
+    Route::get('/skill-test', [SkillTestController::class, 'index'])->name('student_skill_test');
+    Route::post('/skill-test/exam-submission/', [SkillTestController::class, 'exam_submission'])->name('skill_test_exam_submission');
 
     Route::get('/profile', [StudentController::class, 'profile'])->name('student_profile');
     Route::get('/profile/edit', [StudentController::class, 'profile_edit'])->name('student_profile_edit');
@@ -121,9 +140,10 @@ Route::group(['prefix' => 'student','middleware' => ['auth', 'role:student']], f
     Route::get('/info/training/delete/{id}', [StudentController::class, 'StudentTrainingDelete'])->name('StudentTrainingDelete');
     Route::post('/info/training/insert', [StudentController::class, 'StudentInfoInsertTraining'])->name('StudentInfoInsertTraining');
     Route::post('/info/training/edit', [StudentController::class, 'StudentTrainingEdit'])->name('StudentTrainingEdit');
-   
+    
     Route::resource('student-skills', StudentSkillsController::class);  
     
     Route::resource('job-recommendation', JobRecommendationController::class);  
-
+    
+    Route::get('/generate-cv', [StudentController::class, 'generate_cv'])->name('generate_cv');
 });

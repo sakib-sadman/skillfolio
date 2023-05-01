@@ -76,6 +76,8 @@
                             <a href="{{ route('student_profile_edit') }}">
                                 <button class="btn btn-success btn-sm">Make Changes</button>
                             </a>
+                                <a href="{{ route('generate_cv') }}" target="_blank" class="btn btn-sm btn-primary">Download CV</a>
+                            
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2023 at 07:08 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- Generation Time: Mar 19, 2023 at 04:37 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,11 +30,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `education` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `institution` varchar(255) DEFAULT NULL,
-  `major` varchar(255) DEFAULT NULL,
-  `degree` varchar(255) DEFAULT NULL,
-  `start` varchar(255) DEFAULT NULL,
-  `end` varchar(255) DEFAULT NULL,
+  `institution` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `major` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `degree` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `end` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -57,11 +57,11 @@ INSERT INTO `education` (`id`, `user_id`, `institution`, `major`, `degree`, `sta
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -73,9 +73,9 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `images` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `parentable_type` varchar(255) NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parentable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `parentable_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -86,7 +86,7 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `url`, `type`, `parentable_type`, `parentable_id`, `created_at`, `updated_at`) VALUES
-(3, 'public/storage/images/users/nCMwfQJY6kRNe8YEGmPtkk4GFiopkbUHZXbY8WxV.webp', 'webp', 'App\\Models\\User', 3, '2023-03-15 13:36:20', '2023-03-15 13:36:20');
+(3, 'public/storage/images/users/Eyygwhu8Zo4o50R6E4IKBzt7iBhALevwvTNGj82a.jpg', 'jpg', 'App\\Models\\User', 3, '2023-03-16 16:26:20', '2023-03-16 16:26:20');
 
 -- --------------------------------------------------------
 
@@ -96,12 +96,12 @@ INSERT INTO `images` (`id`, `url`, `type`, `parentable_type`, `parentable_id`, `
 
 CREATE TABLE `job_portals` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `job_title` varchar(255) NOT NULL,
-  `job_location` varchar(255) NOT NULL,
-  `company_name` varchar(255) NOT NULL,
-  `job_salary` varchar(255) DEFAULT NULL,
+  `job_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_salary` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `job_deadline` date DEFAULT NULL,
-  `job_details` text DEFAULT NULL,
+  `job_details` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -166,7 +166,7 @@ INSERT INTO `job_portals` (`id`, `job_title`, `job_location`, `company_name`, `j
 (51, 'Telecommunications Facility Examiner', 'Nikolasmouth', 'Wolff and Sons', '31030', '2023-08-02', 'Laboriosam aliquid sit dicta totam atque velit. Consequatur neque vero culpa vitae adipisci eum. Reiciendis nihil officiis tempore sapiente id doloribus omnis facilis. Quia omnis ut repellendus officia nemo.\n\nAutem occaecati neque ea. Temporibus earum odit deserunt voluptas dolorum maxime. Eveniet error laborum non odit numquam possimus. Nemo et cupiditate vel.\n\nIpsam architecto ut unde ipsum vitae. Animi aut repellendus iste saepe commodi ea atque. Architecto delectus rerum est est ut perferendis.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 17:47:22'),
 (52, 'Municipal Fire Fighting Supervisor', 'New Dulce', 'Gleichner-Gerlach', '36743', '2023-07-21', 'Cupiditate accusantium ut ut ea cumque non rerum. Porro quisquam sapiente accusamus doloribus minima. Rerum facilis quo accusamus in dolorem delectus ipsa. Necessitatibus voluptatem voluptatem laborum possimus consectetur sit inventore.\n\nEt reiciendis natus aperiam inventore neque molestiae. Aut veritatis quo voluptate omnis animi odit at. Pariatur odit unde voluptatem quam saepe.\n\nHic ut sit eius rerum. Placeat optio aut odit libero tempore qui deserunt rerum. Sequi rerum ut cupiditate sit voluptas et. Ipsum qui sunt dolorem ab error.', 1, NULL, '2023-03-05 09:49:01', '2023-03-05 09:49:01'),
 (53, 'Cement Mason and Concrete Finisher', 'Port Eldonside', 'Mitchell-Grady', '35807', '2024-02-17', 'Ipsam eos consectetur autem modi enim quia sed. Molestiae est consequatur veniam natus voluptatem quod. Ipsam aut est enim quasi ut. Aperiam unde nesciunt voluptatem perspiciatis. Molestias adipisci aut aut et.\n\nRepellendus veniam accusantium illum fugiat recusandae quia nihil praesentium. Ad quos architecto quo. Nesciunt optio architecto sapiente omnis.\n\nVoluptates aut adipisci ut provident itaque id. Vero sunt non cum quis est accusamus sint aut. Magnam autem hic omnis tempora assumenda dolorem. Corrupti et reprehenderit quisquam ut itaque corrupti similique.', 1, '2023-03-05 17:44:50', '2023-03-05 09:49:01', '2023-03-05 17:44:50'),
-(54, 'Django Developer', 'Dhaka', 'JIJLKL', '35000-45000/- BDT', '2023-03-31', '<p>Job Summary: We are seeking a talented Django Developer to join our dynamic team. As a Django Developer, you will be responsible for developing and maintaining web applications using Django framework. The ideal candidate will have strong experience in Python programming and web development with a passion for creating clean, efficient, and scalable code.</p><p><strong>Responsibilities:</strong></p><figure class=\"table\"><table><tbody><tr><td>asd</td><td>asd</td></tr></tbody></table></figure><ul><li>Developing, maintaining, and enhancing web applications using Django framework</li><li>Designing and implementing RESTful APIs</li><li>Writing clean, efficient, and reusable code</li><li>Collaborating with cross-functional teams to identify and solve complex problems</li><li>Participating in code review and testing to ensure high-quality deliverables</li><li>Staying up-to-date with industry trends and best practices in software development</li><li>Troubleshooting and debugging web applications</li><li>Developing and maintaining documentation for developed applications</li></ul><p>Requirements:</p><ul><li>Bachelorâ€™s or Masterâ€™s degree in Computer Science or a related field</li><li>Strong experience in Python programming</li><li>Proficiency in Django framework</li><li>Experience with HTML/CSS, JavaScript, and jQuery</li><li>Experience with SQL databases (preferably PostgreSQL)</li><li>Familiarity with Git version control</li><li>Understanding of software development principles, design patterns, and best practices</li><li>Excellent problem-solving and communication skills</li><li>Ability to work independently and in a team environment</li><li>Strong attention to detail</li></ul><p>Nice to have:</p><ul><li>Experience with front-end frameworks such as React, Vue.js, or AngularJS</li><li>Experience with Docker and Kubernetes</li><li>Experience with AWS or other cloud services</li></ul><p>We offer competitive salary packages, flexible working hours, and opportunities for professional growth and development. If you are a motivated and passionate Django Developer looking for a challenging and rewarding career opportunity, please apply with your resume and cover letter.<br><br>send email to hr@gmail.com</p>', 1, NULL, '2023-03-05 17:44:03', '2023-03-05 17:44:03');
+(54, 'Django Developer', 'Dhaka', 'JIJLKL', '35000-45000/- BDT', '2023-03-31', '<p>Job Summary: We are seeking a talented Django Developer to join our dynamic team. As a Django Developer, you will be responsible for developing and maintaining web applications using Django framework. The ideal candidate will have strong experience in Python programming and web development with a passion for creating clean, efficient, and scalable code.</p><p><strong>Responsibilities:</strong></p><figure class=\"table\"><table><tbody><tr><td>asd</td><td>asd</td></tr></tbody></table></figure><ul><li>Developing, maintaining, and enhancing web applications using Django framework</li><li>Designing and implementing RESTful APIs</li><li>Writing clean, efficient, and reusable code</li><li>Collaborating with cross-functional teams to identify and solve complex problems</li><li>Participating in code review and testing to ensure high-quality deliverables</li><li>Staying up-to-date with industry trends and best practices in software development</li><li>Troubleshooting and debugging web applications</li><li>Developing and maintaining documentation for developed applications</li></ul><p>Requirements:</p><ul><li>Bachelor’s or Master’s degree in Computer Science or a related field</li><li>Strong experience in Python programming</li><li>Proficiency in Django framework</li><li>Experience with HTML/CSS, JavaScript, and jQuery</li><li>Experience with SQL databases (preferably PostgreSQL)</li><li>Familiarity with Git version control</li><li>Understanding of software development principles, design patterns, and best practices</li><li>Excellent problem-solving and communication skills</li><li>Ability to work independently and in a team environment</li><li>Strong attention to detail</li></ul><p>Nice to have:</p><ul><li>Experience with front-end frameworks such as React, Vue.js, or AngularJS</li><li>Experience with Docker and Kubernetes</li><li>Experience with AWS or other cloud services</li></ul><p>We offer competitive salary packages, flexible working hours, and opportunities for professional growth and development. If you are a motivated and passionate Django Developer looking for a challenging and rewarding career opportunity, please apply with your resume and cover letter.<br><br>send email to hr@gmail.com</p>', 1, NULL, '2023-03-05 17:44:03', '2023-03-05 17:44:03');
 
 -- --------------------------------------------------------
 
@@ -178,7 +178,7 @@ CREATE TABLE `job_recommendations` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `faculty_id` bigint(20) UNSIGNED NOT NULL,
-  `recommendation_letter` text DEFAULT NULL,
+  `recommendation_letter` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '0=pending, -1=not approved, 1=approved',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -189,7 +189,7 @@ CREATE TABLE `job_recommendations` (
 --
 
 INSERT INTO `job_recommendations` (`id`, `user_id`, `faculty_id`, `recommendation_letter`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 2, '<p>What is example of an article?</p><p>An article is a word that is used to indicate that a noun is a noun without describing it. For example, in the sentence <strong>Nick bought a dog, the article a indicates that the word dog is a noun</strong>. Articles can also modify anything that acts as a noun, such as a pronoun or a noun phrase.Nov 12, 2021</p>', 1, '2023-03-15 13:03:25', '2023-03-16 06:07:17');
+(1, 3, 2, '<p>Dear [Employer\'s Name],</p><p>I am writing to highly recommend [Employee\'s Name] for the position of [Position Name] in your organization. I had the pleasure of working with [Employee\'s Name] for [Duration of Employment] at [Previous Company/Institution] and I can confidently say that [he/she/they] is one of the best employees I have had the pleasure of working with.</p><p>[Employee\'s Name] is an incredibly hardworking, dedicated, and detail-oriented individual who always goes above and beyond in their work. [He/She/They] is a quick learner and has the ability to work well under pressure while maintaining a positive attitude. [He/She/They] is always willing to help out colleagues and is a team player in every sense of the word.</p><p>During [his/her/their] time at [Previous Company/Institution], [Employee\'s Name] demonstrated excellent communication skills, both written and verbal. [He/She/They] was responsible for [list of responsibilities], and consistently met or exceeded expectations in these areas. [He/She/They] was also instrumental in [list of achievements or contributions to the company/institution].</p><p>I believe that [Employee\'s Name] would be a valuable asset to your organization and I highly recommend [him/her/them] for the position of [Position Name]. [He/She/They] has my strongest endorsement, and I am confident that [he/she/they] would excel in [his/her/their] role at your company.</p><p>Please do not hesitate to contact me if you require any further information about [Employee\'s Name] or [his/her/their] work at [Previous Company/Institution].</p><p>Sincerely,</p><p>[Your Name]</p>', 1, '2023-03-14 20:18:58', '2023-03-16 15:38:18');
 
 -- --------------------------------------------------------
 
@@ -199,7 +199,7 @@ INSERT INTO `job_recommendations` (`id`, `user_id`, `faculty_id`, `recommendatio
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -230,7 +230,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -242,7 +242,7 @@ CREATE TABLE `model_has_permissions` (
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -264,8 +264,8 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -277,8 +277,8 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -291,11 +291,11 @@ CREATE TABLE `permissions` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -309,8 +309,8 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -345,9 +345,9 @@ CREATE TABLE `student_skills` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `faculty_id` bigint(20) UNSIGNED NOT NULL,
-  `course_name` varchar(255) NOT NULL,
+  `course_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `course_completed` date NOT NULL,
-  `course_grade` varchar(255) NOT NULL,
+  `course_grade` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -361,8 +361,7 @@ INSERT INTO `student_skills` (`id`, `user_id`, `faculty_id`, `course_name`, `cou
 (2, 3, 2, 'sdfghdfsgh', '2023-03-15', 'B-', 1, '2023-03-11 13:35:07', '2023-03-11 16:04:40'),
 (4, 3, 2, 'sdfghdfsgh', '2023-03-15', 'B-', 1, '2023-03-11 13:35:07', '2023-03-11 16:05:15'),
 (5, 3, 2, 'sdfghdfsgh', '2023-03-15', 'B-', -1, '2023-03-11 13:35:07', '2023-03-11 16:05:25'),
-(6, 3, 2, 'sdfghdfsgh', '2023-03-15', 'B-', -1, '2023-03-11 13:35:07', '2023-03-11 16:07:34'),
-(7, 3, 2, 'asdasd', '2023-03-29', 'C+', 0, '2023-03-15 12:56:30', '2023-03-15 12:56:30');
+(6, 3, 2, 'sdfghdfsgh', '2023-03-15', 'B-', -1, '2023-03-11 13:35:07', '2023-03-11 16:07:34');
 
 -- --------------------------------------------------------
 
@@ -373,11 +372,11 @@ INSERT INTO `student_skills` (`id`, `user_id`, `faculty_id`, `course_name`, `cou
 CREATE TABLE `trainings` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `institution` varchar(255) DEFAULT NULL,
-  `duration` varchar(255) DEFAULT NULL,
-  `training_date` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `institution` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `duration` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `training_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -398,15 +397,15 @@ INSERT INTO `trainings` (`id`, `user_id`, `title`, `institution`, `duration`, `t
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `gender` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -416,9 +415,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `gender`, `email_verified_at`, `phone`, `address`, `password`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', 'male', NULL, '017', NULL, '$2y$10$GYCswAlpHTBNdGYVdDUTYOMnJ.oRWKv3154mw6ewKOgmW/lnVdadW', 1, 'u4MOe3ZLHhSYn3MbrI2rJ5B99icbd4izpqtdUj3RWhHV5XsZxS0jInqCYSVM', '2023-03-05 07:18:27', '2023-03-05 17:37:28'),
-(2, 'Faculty', 'faculty@gmail.com', NULL, NULL, NULL, NULL, '$2y$10$AUfsmAsn/5EmTN3OXtYJBe.hUJSnRTN/JIx14ov.KKc9sKKieqU2G', 1, 'fnKsNMYmM0RiGXbapxGvteYbujgaruLybXxDM0a5BtXglUOlzKfsBMQdu9uH', '2023-03-05 07:18:28', '2023-03-05 07:18:28'),
-(3, 'Student', 'student@gmail.com', 'male', NULL, '201', NULL, '$2y$10$IYTYhGKwFwCrqi7TqlrEies4/EVibYPgk6/R/dh0ELifXKL0cBNlm', 1, 'WJxLNIRypU63MgHSwFIbBj7yMa9h66iu2gXXjsTwRZX8ofZJMPCdvhlZmQmM', '2023-03-05 07:18:28', '2023-03-11 14:49:13'),
+(1, 'Admin', 'admin@gmail.com', 'male', NULL, '017', NULL, '$2y$10$GYCswAlpHTBNdGYVdDUTYOMnJ.oRWKv3154mw6ewKOgmW/lnVdadW', 1, 'ucbd3Iv1uTciXD6VJhDEcSnTY8Ue4cTaBV4c5MyvviJZThJ1aWWTNWY57vU5', '2023-03-05 07:18:27', '2023-03-05 17:37:28'),
+(2, 'Faculty', 'faculty@gmail.com', NULL, NULL, '019816322', NULL, '$2y$10$AUfsmAsn/5EmTN3OXtYJBe.hUJSnRTN/JIx14ov.KKc9sKKieqU2G', 1, 'hNpFG5LaQBh2Lgqj5ImQlL5zJyOSg8PGkzNUUc3acKXJZmVXeLkxtpyo2FDu', '2023-03-05 07:18:28', '2023-03-05 07:18:28'),
+(3, 'Student', 'student@gmail.com', 'male', NULL, '201', NULL, '$2y$10$IYTYhGKwFwCrqi7TqlrEies4/EVibYPgk6/R/dh0ELifXKL0cBNlm', 1, 'BuPsBF8o413amKgmn0lQCjiynwlhALLG48GGmWtz3E3IiPRxPkE2NAgRZwfV', '2023-03-05 07:18:28', '2023-03-11 14:49:13'),
 (4, 'Tushar', 'tushar@gmail.com', 'male', NULL, '01465463127', 'Mirpur', '$2y$10$lr7mi6gMo5z.yx4pprNA6edzdKmDbMwOsX.Xki6dCwF06dyc0Y5Ai', 0, NULL, '2023-03-11 14:29:04', '2023-03-11 14:40:32'),
 (5, 'asdfgasdf', 'adasdfasdfasdfmin@gmail.com', 'male', NULL, '134', 'asdfgasd', '$2y$10$Ov0.QqhxAaAmzTUqYi8eg.IGvV7Mnghzos.uts9mWTjVhGVKftFl6', 0, NULL, '2023-03-11 14:32:56', '2023-03-11 14:40:29');
 
@@ -431,11 +430,11 @@ INSERT INTO `users` (`id`, `name`, `email`, `gender`, `email_verified_at`, `phon
 CREATE TABLE `work_experiences` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `work_place` varchar(255) DEFAULT NULL,
-  `designation` varchar(255) DEFAULT NULL,
-  `start` varchar(255) DEFAULT NULL,
-  `end` varchar(255) DEFAULT NULL,
-  `job_description` text DEFAULT NULL,
+  `work_place` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `end` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `job_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -627,7 +626,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `student_skills`
 --
 ALTER TABLE `student_skills`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `trainings`
